@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TRecommendNodeInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="nodeId" jdbcType="VARCHAR" property="nodeid" />
+    <result column="ranking" jdbcType="INTEGER" property="ranking" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="picPath" jdbcType="VARCHAR" property="picpath" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="isDelete" jdbcType="CHAR" property="isdelete" />
+    <result column="isPublish" jdbcType="CHAR" property="ispublish" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="publish_user" jdbcType="VARCHAR" property="publishUser" />
+    <result column="l_contentType" jdbcType="CHAR" property="lContenttype" />
+    <result column="l_nodeId" jdbcType="VARCHAR" property="lNodeid" />
+    <result column="l_content" jdbcType="VARCHAR" property="lContent" />
+    <result column="l_picPath" jdbcType="VARCHAR" property="lPicpath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `name`, nodeId, ranking, description, picPath, create_time, create_user, update_time, 
+    update_user, isDelete, isPublish, publish_time, publish_user, l_contentType, l_nodeId, 
+    l_content, l_picPath
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_recommend_node_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_recommend_node_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_recommend_node_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDoExample">
+    delete from t_recommend_node_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDo">
+    insert into t_recommend_node_info (id, `name`, nodeId, 
+      ranking, description, picPath, 
+      create_time, create_user, update_time, 
+      update_user, isDelete, isPublish, 
+      publish_time, publish_user, l_contentType, 
+      l_nodeId, l_content, l_picPath
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, 
+      #{ranking,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{picpath,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{isdelete,jdbcType=CHAR}, #{ispublish,jdbcType=CHAR}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{publishUser,jdbcType=VARCHAR}, #{lContenttype,jdbcType=CHAR}, 
+      #{lNodeid,jdbcType=VARCHAR}, #{lContent,jdbcType=VARCHAR}, #{lPicpath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDo">
+    insert into t_recommend_node_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="nodeid != null">
+        nodeId,
+      </if>
+      <if test="ranking != null">
+        ranking,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="picpath != null">
+        picPath,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+      <if test="ispublish != null">
+        isPublish,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="publishUser != null">
+        publish_user,
+      </if>
+      <if test="lContenttype != null">
+        l_contentType,
+      </if>
+      <if test="lNodeid != null">
+        l_nodeId,
+      </if>
+      <if test="lContent != null">
+        l_content,
+      </if>
+      <if test="lPicpath != null">
+        l_picPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeid != null">
+        #{nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null">
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=CHAR},
+      </if>
+      <if test="ispublish != null">
+        #{ispublish,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUser != null">
+        #{publishUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lContenttype != null">
+        #{lContenttype,jdbcType=CHAR},
+      </if>
+      <if test="lNodeid != null">
+        #{lNodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lContent != null">
+        #{lContent,jdbcType=VARCHAR},
+      </if>
+      <if test="lPicpath != null">
+        #{lPicpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDoExample" resultType="java.lang.Long">
+    select count(*) from t_recommend_node_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_recommend_node_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeid != null">
+        nodeId = #{record.nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ranking != null">
+        ranking = #{record.ranking,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picpath != null">
+        picPath = #{record.picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=CHAR},
+      </if>
+      <if test="record.ispublish != null">
+        isPublish = #{record.ispublish,jdbcType=CHAR},
+      </if>
+      <if test="record.publishTime != null">
+        publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publishUser != null">
+        publish_user = #{record.publishUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lContenttype != null">
+        l_contentType = #{record.lContenttype,jdbcType=CHAR},
+      </if>
+      <if test="record.lNodeid != null">
+        l_nodeId = #{record.lNodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lContent != null">
+        l_content = #{record.lContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lPicpath != null">
+        l_picPath = #{record.lPicpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_recommend_node_info
+    set id = #{record.id,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      nodeId = #{record.nodeid,jdbcType=VARCHAR},
+      ranking = #{record.ranking,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      picPath = #{record.picpath,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      isDelete = #{record.isdelete,jdbcType=CHAR},
+      isPublish = #{record.ispublish,jdbcType=CHAR},
+      publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      publish_user = #{record.publishUser,jdbcType=VARCHAR},
+      l_contentType = #{record.lContenttype,jdbcType=CHAR},
+      l_nodeId = #{record.lNodeid,jdbcType=VARCHAR},
+      l_content = #{record.lContent,jdbcType=VARCHAR},
+      l_picPath = #{record.lPicpath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDo">
+    update t_recommend_node_info
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeid != null">
+        nodeId = #{nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null">
+        picPath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=CHAR},
+      </if>
+      <if test="ispublish != null">
+        isPublish = #{ispublish,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUser != null">
+        publish_user = #{publishUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lContenttype != null">
+        l_contentType = #{lContenttype,jdbcType=CHAR},
+      </if>
+      <if test="lNodeid != null">
+        l_nodeId = #{lNodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="lContent != null">
+        l_content = #{lContent,jdbcType=VARCHAR},
+      </if>
+      <if test="lPicpath != null">
+        l_picPath = #{lPicpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TRecommendNodeInfoDo">
+    update t_recommend_node_info
+    set `name` = #{name,jdbcType=VARCHAR},
+      nodeId = #{nodeid,jdbcType=VARCHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      picPath = #{picpath,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      isDelete = #{isdelete,jdbcType=CHAR},
+      isPublish = #{ispublish,jdbcType=CHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_user = #{publishUser,jdbcType=VARCHAR},
+      l_contentType = #{lContenttype,jdbcType=CHAR},
+      l_nodeId = #{lNodeid,jdbcType=VARCHAR},
+      l_content = #{lContent,jdbcType=VARCHAR},
+      l_picPath = #{lPicpath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

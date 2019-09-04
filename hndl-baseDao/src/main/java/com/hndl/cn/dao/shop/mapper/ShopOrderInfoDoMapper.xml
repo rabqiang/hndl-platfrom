@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.shop.mapper.ShopOrderInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.shop.bean.ShopOrderInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_time_long" jdbcType="VARCHAR" property="createTimeLong" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="buy_count" jdbcType="INTEGER" property="buyCount" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="pay_count" jdbcType="DOUBLE" property="payCount" />
+    <result column="is_all_buy" jdbcType="CHAR" property="isAllBuy" />
+    <result column="is_target" jdbcType="CHAR" property="isTarget" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="out_order_id" jdbcType="VARCHAR" property="outOrderId" />
+    <result column="is_back_coin" jdbcType="CHAR" property="isBackCoin" />
+    <result column="out_trade_id" jdbcType="VARCHAR" property="outTradeId" />
+    <result column="out_trade_status" jdbcType="VARCHAR" property="outTradeStatus" />
+    <result column="out_trade_type" jdbcType="VARCHAR" property="outTradeType" />
+    <result column="is_winning_noticed" jdbcType="CHAR" property="isWinningNoticed" />
+    <result column="is_sended_notice" jdbcType="CHAR" property="isSendedNotice" />
+    <result column="start_luck_number" jdbcType="VARCHAR" property="startLuckNumber" />
+    <result column="end_luck_number" jdbcType="VARCHAR" property="endLuckNumber" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, create_time_long, last_Operator, last_Modify_Time, 
+    user_id, item_id, buy_count, pay_type, pay_count, is_all_buy, is_target, ip, ip_address, 
+    out_order_id, is_back_coin, out_trade_id, out_trade_status, out_trade_type, is_winning_noticed, 
+    is_sended_notice, start_luck_number, end_luck_number
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shop_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shop_order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shop_order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDoExample">
+    delete from shop_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDo">
+    insert into shop_order_info (id, is_Deleted, create_Operator, 
+      create_time, create_time_long, last_Operator, 
+      last_Modify_Time, user_id, item_id, 
+      buy_count, pay_type, pay_count, 
+      is_all_buy, is_target, ip, ip_address, 
+      out_order_id, is_back_coin, out_trade_id, 
+      out_trade_status, out_trade_type, is_winning_noticed, 
+      is_sended_notice, start_luck_number, end_luck_number
+      )
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createTimeLong,jdbcType=VARCHAR}, #{lastOperator,jdbcType=VARCHAR}, 
+      #{lastModifyTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, 
+      #{buyCount,jdbcType=INTEGER}, #{payType,jdbcType=VARCHAR}, #{payCount,jdbcType=DOUBLE}, 
+      #{isAllBuy,jdbcType=CHAR}, #{isTarget,jdbcType=CHAR}, #{ip,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{outOrderId,jdbcType=VARCHAR}, #{isBackCoin,jdbcType=CHAR}, #{outTradeId,jdbcType=VARCHAR}, 
+      #{outTradeStatus,jdbcType=VARCHAR}, #{outTradeType,jdbcType=VARCHAR}, #{isWinningNoticed,jdbcType=CHAR}, 
+      #{isSendedNotice,jdbcType=CHAR}, #{startLuckNumber,jdbcType=VARCHAR}, #{endLuckNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDo">
+    insert into shop_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createTimeLong != null">
+        create_time_long,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="buyCount != null">
+        buy_count,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="payCount != null">
+        pay_count,
+      </if>
+      <if test="isAllBuy != null">
+        is_all_buy,
+      </if>
+      <if test="isTarget != null">
+        is_target,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="outOrderId != null">
+        out_order_id,
+      </if>
+      <if test="isBackCoin != null">
+        is_back_coin,
+      </if>
+      <if test="outTradeId != null">
+        out_trade_id,
+      </if>
+      <if test="outTradeStatus != null">
+        out_trade_status,
+      </if>
+      <if test="outTradeType != null">
+        out_trade_type,
+      </if>
+      <if test="isWinningNoticed != null">
+        is_winning_noticed,
+      </if>
+      <if test="isSendedNotice != null">
+        is_sended_notice,
+      </if>
+      <if test="startLuckNumber != null">
+        start_luck_number,
+      </if>
+      <if test="endLuckNumber != null">
+        end_luck_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTimeLong != null">
+        #{createTimeLong,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="buyCount != null">
+        #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null">
+        #{payCount,jdbcType=DOUBLE},
+      </if>
+      <if test="isAllBuy != null">
+        #{isAllBuy,jdbcType=CHAR},
+      </if>
+      <if test="isTarget != null">
+        #{isTarget,jdbcType=CHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrderId != null">
+        #{outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBackCoin != null">
+        #{isBackCoin,jdbcType=CHAR},
+      </if>
+      <if test="outTradeId != null">
+        #{outTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeStatus != null">
+        #{outTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeType != null">
+        #{outTradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="isWinningNoticed != null">
+        #{isWinningNoticed,jdbcType=CHAR},
+      </if>
+      <if test="isSendedNotice != null">
+        #{isSendedNotice,jdbcType=CHAR},
+      </if>
+      <if test="startLuckNumber != null">
+        #{startLuckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="endLuckNumber != null">
+        #{endLuckNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDoExample" resultType="java.lang.Long">
+    select count(*) from shop_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shop_order_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTimeLong != null">
+        create_time_long = #{record.createTimeLong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemId != null">
+        item_id = #{record.itemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyCount != null">
+        buy_count = #{record.buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCount != null">
+        pay_count = #{record.payCount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isAllBuy != null">
+        is_all_buy = #{record.isAllBuy,jdbcType=CHAR},
+      </if>
+      <if test="record.isTarget != null">
+        is_target = #{record.isTarget,jdbcType=CHAR},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipAddress != null">
+        ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outOrderId != null">
+        out_order_id = #{record.outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBackCoin != null">
+        is_back_coin = #{record.isBackCoin,jdbcType=CHAR},
+      </if>
+      <if test="record.outTradeId != null">
+        out_trade_id = #{record.outTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outTradeStatus != null">
+        out_trade_status = #{record.outTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outTradeType != null">
+        out_trade_type = #{record.outTradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isWinningNoticed != null">
+        is_winning_noticed = #{record.isWinningNoticed,jdbcType=CHAR},
+      </if>
+      <if test="record.isSendedNotice != null">
+        is_sended_notice = #{record.isSendedNotice,jdbcType=CHAR},
+      </if>
+      <if test="record.startLuckNumber != null">
+        start_luck_number = #{record.startLuckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endLuckNumber != null">
+        end_luck_number = #{record.endLuckNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shop_order_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_time_long = #{record.createTimeLong,jdbcType=VARCHAR},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      item_id = #{record.itemId,jdbcType=BIGINT},
+      buy_count = #{record.buyCount,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=VARCHAR},
+      pay_count = #{record.payCount,jdbcType=DOUBLE},
+      is_all_buy = #{record.isAllBuy,jdbcType=CHAR},
+      is_target = #{record.isTarget,jdbcType=CHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      out_order_id = #{record.outOrderId,jdbcType=VARCHAR},
+      is_back_coin = #{record.isBackCoin,jdbcType=CHAR},
+      out_trade_id = #{record.outTradeId,jdbcType=VARCHAR},
+      out_trade_status = #{record.outTradeStatus,jdbcType=VARCHAR},
+      out_trade_type = #{record.outTradeType,jdbcType=VARCHAR},
+      is_winning_noticed = #{record.isWinningNoticed,jdbcType=CHAR},
+      is_sended_notice = #{record.isSendedNotice,jdbcType=CHAR},
+      start_luck_number = #{record.startLuckNumber,jdbcType=VARCHAR},
+      end_luck_number = #{record.endLuckNumber,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDo">
+    update shop_order_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTimeLong != null">
+        create_time_long = #{createTimeLong,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="buyCount != null">
+        buy_count = #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null">
+        pay_count = #{payCount,jdbcType=DOUBLE},
+      </if>
+      <if test="isAllBuy != null">
+        is_all_buy = #{isAllBuy,jdbcType=CHAR},
+      </if>
+      <if test="isTarget != null">
+        is_target = #{isTarget,jdbcType=CHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrderId != null">
+        out_order_id = #{outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBackCoin != null">
+        is_back_coin = #{isBackCoin,jdbcType=CHAR},
+      </if>
+      <if test="outTradeId != null">
+        out_trade_id = #{outTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeStatus != null">
+        out_trade_status = #{outTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeType != null">
+        out_trade_type = #{outTradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="isWinningNoticed != null">
+        is_winning_noticed = #{isWinningNoticed,jdbcType=CHAR},
+      </if>
+      <if test="isSendedNotice != null">
+        is_sended_notice = #{isSendedNotice,jdbcType=CHAR},
+      </if>
+      <if test="startLuckNumber != null">
+        start_luck_number = #{startLuckNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="endLuckNumber != null">
+        end_luck_number = #{endLuckNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.shop.bean.ShopOrderInfoDo">
+    update shop_order_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_time_long = #{createTimeLong,jdbcType=VARCHAR},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      item_id = #{itemId,jdbcType=BIGINT},
+      buy_count = #{buyCount,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      pay_count = #{payCount,jdbcType=DOUBLE},
+      is_all_buy = #{isAllBuy,jdbcType=CHAR},
+      is_target = #{isTarget,jdbcType=CHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      out_order_id = #{outOrderId,jdbcType=VARCHAR},
+      is_back_coin = #{isBackCoin,jdbcType=CHAR},
+      out_trade_id = #{outTradeId,jdbcType=VARCHAR},
+      out_trade_status = #{outTradeStatus,jdbcType=VARCHAR},
+      out_trade_type = #{outTradeType,jdbcType=VARCHAR},
+      is_winning_noticed = #{isWinningNoticed,jdbcType=CHAR},
+      is_sended_notice = #{isSendedNotice,jdbcType=CHAR},
+      start_luck_number = #{startLuckNumber,jdbcType=VARCHAR},
+      end_luck_number = #{endLuckNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

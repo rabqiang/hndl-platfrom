@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.newyear.mapper.NewyearTopsongRecordDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="song_id1" jdbcType="BIGINT" property="songId1" />
+    <result column="song_id2" jdbcType="BIGINT" property="songId2" />
+    <result column="song_id3" jdbcType="BIGINT" property="songId3" />
+    <result column="song_id4" jdbcType="BIGINT" property="songId4" />
+    <result column="song_id5" jdbcType="BIGINT" property="songId5" />
+    <result column="song_id6" jdbcType="BIGINT" property="songId6" />
+    <result column="song_id7" jdbcType="BIGINT" property="songId7" />
+    <result column="song_id8" jdbcType="BIGINT" property="songId8" />
+    <result column="song_id9" jdbcType="BIGINT" property="songId9" />
+    <result column="song_id10" jdbcType="BIGINT" property="songId10" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, song_id1, 
+    song_id2, song_id3, song_id4, song_id5, song_id6, song_id7, song_id8, song_id9, song_id10, 
+    create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from newyear_topsong_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from newyear_topsong_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from newyear_topsong_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDoExample">
+    delete from newyear_topsong_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDo">
+    insert into newyear_topsong_record (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      song_id1, song_id2, song_id3, 
+      song_id4, song_id5, song_id6, 
+      song_id7, song_id8, song_id9, 
+      song_id10, create_date)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{songId1,jdbcType=BIGINT}, #{songId2,jdbcType=BIGINT}, #{songId3,jdbcType=BIGINT}, 
+      #{songId4,jdbcType=BIGINT}, #{songId5,jdbcType=BIGINT}, #{songId6,jdbcType=BIGINT}, 
+      #{songId7,jdbcType=BIGINT}, #{songId8,jdbcType=BIGINT}, #{songId9,jdbcType=BIGINT}, 
+      #{songId10,jdbcType=BIGINT}, #{createDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDo">
+    insert into newyear_topsong_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="songId1 != null">
+        song_id1,
+      </if>
+      <if test="songId2 != null">
+        song_id2,
+      </if>
+      <if test="songId3 != null">
+        song_id3,
+      </if>
+      <if test="songId4 != null">
+        song_id4,
+      </if>
+      <if test="songId5 != null">
+        song_id5,
+      </if>
+      <if test="songId6 != null">
+        song_id6,
+      </if>
+      <if test="songId7 != null">
+        song_id7,
+      </if>
+      <if test="songId8 != null">
+        song_id8,
+      </if>
+      <if test="songId9 != null">
+        song_id9,
+      </if>
+      <if test="songId10 != null">
+        song_id10,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="songId1 != null">
+        #{songId1,jdbcType=BIGINT},
+      </if>
+      <if test="songId2 != null">
+        #{songId2,jdbcType=BIGINT},
+      </if>
+      <if test="songId3 != null">
+        #{songId3,jdbcType=BIGINT},
+      </if>
+      <if test="songId4 != null">
+        #{songId4,jdbcType=BIGINT},
+      </if>
+      <if test="songId5 != null">
+        #{songId5,jdbcType=BIGINT},
+      </if>
+      <if test="songId6 != null">
+        #{songId6,jdbcType=BIGINT},
+      </if>
+      <if test="songId7 != null">
+        #{songId7,jdbcType=BIGINT},
+      </if>
+      <if test="songId8 != null">
+        #{songId8,jdbcType=BIGINT},
+      </if>
+      <if test="songId9 != null">
+        #{songId9,jdbcType=BIGINT},
+      </if>
+      <if test="songId10 != null">
+        #{songId10,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDoExample" resultType="java.lang.Long">
+    select count(*) from newyear_topsong_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update newyear_topsong_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.songId1 != null">
+        song_id1 = #{record.songId1,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId2 != null">
+        song_id2 = #{record.songId2,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId3 != null">
+        song_id3 = #{record.songId3,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId4 != null">
+        song_id4 = #{record.songId4,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId5 != null">
+        song_id5 = #{record.songId5,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId6 != null">
+        song_id6 = #{record.songId6,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId7 != null">
+        song_id7 = #{record.songId7,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId8 != null">
+        song_id8 = #{record.songId8,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId9 != null">
+        song_id9 = #{record.songId9,jdbcType=BIGINT},
+      </if>
+      <if test="record.songId10 != null">
+        song_id10 = #{record.songId10,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update newyear_topsong_record
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      song_id1 = #{record.songId1,jdbcType=BIGINT},
+      song_id2 = #{record.songId2,jdbcType=BIGINT},
+      song_id3 = #{record.songId3,jdbcType=BIGINT},
+      song_id4 = #{record.songId4,jdbcType=BIGINT},
+      song_id5 = #{record.songId5,jdbcType=BIGINT},
+      song_id6 = #{record.songId6,jdbcType=BIGINT},
+      song_id7 = #{record.songId7,jdbcType=BIGINT},
+      song_id8 = #{record.songId8,jdbcType=BIGINT},
+      song_id9 = #{record.songId9,jdbcType=BIGINT},
+      song_id10 = #{record.songId10,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDo">
+    update newyear_topsong_record
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="songId1 != null">
+        song_id1 = #{songId1,jdbcType=BIGINT},
+      </if>
+      <if test="songId2 != null">
+        song_id2 = #{songId2,jdbcType=BIGINT},
+      </if>
+      <if test="songId3 != null">
+        song_id3 = #{songId3,jdbcType=BIGINT},
+      </if>
+      <if test="songId4 != null">
+        song_id4 = #{songId4,jdbcType=BIGINT},
+      </if>
+      <if test="songId5 != null">
+        song_id5 = #{songId5,jdbcType=BIGINT},
+      </if>
+      <if test="songId6 != null">
+        song_id6 = #{songId6,jdbcType=BIGINT},
+      </if>
+      <if test="songId7 != null">
+        song_id7 = #{songId7,jdbcType=BIGINT},
+      </if>
+      <if test="songId8 != null">
+        song_id8 = #{songId8,jdbcType=BIGINT},
+      </if>
+      <if test="songId9 != null">
+        song_id9 = #{songId9,jdbcType=BIGINT},
+      </if>
+      <if test="songId10 != null">
+        song_id10 = #{songId10,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.newyear.bean.NewyearTopsongRecordDo">
+    update newyear_topsong_record
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      song_id1 = #{songId1,jdbcType=BIGINT},
+      song_id2 = #{songId2,jdbcType=BIGINT},
+      song_id3 = #{songId3,jdbcType=BIGINT},
+      song_id4 = #{songId4,jdbcType=BIGINT},
+      song_id5 = #{songId5,jdbcType=BIGINT},
+      song_id6 = #{songId6,jdbcType=BIGINT},
+      song_id7 = #{songId7,jdbcType=BIGINT},
+      song_id8 = #{songId8,jdbcType=BIGINT},
+      song_id9 = #{songId9,jdbcType=BIGINT},
+      song_id10 = #{songId10,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

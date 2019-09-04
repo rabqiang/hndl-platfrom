@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.welfare.mapper.WelfareOrgInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="donate_heart" jdbcType="BIGINT" property="donateHeart" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="type_apply" jdbcType="VARCHAR" property="typeApply" />
+    <result column="star_id_apply" jdbcType="BIGINT" property="starIdApply" />
+    <result column="name_apply" jdbcType="VARCHAR" property="nameApply" />
+    <result column="brand_desc_apply" jdbcType="VARCHAR" property="brandDescApply" />
+    <result column="phone_apply" jdbcType="VARCHAR" property="phoneApply" />
+    <result column="join_desc_apply" jdbcType="VARCHAR" property="joinDescApply" />
+    <result column="money_apply" jdbcType="DOUBLE" property="moneyApply" />
+    <result column="org_user" jdbcType="VARCHAR" property="orgUser" />
+    <result column="org_logo_url" jdbcType="VARCHAR" property="orgLogoUrl" />
+    <result column="donate_money" jdbcType="DOUBLE" property="donateMoney" />
+    <result column="other1" jdbcType="VARCHAR" property="other1" />
+    <result column="other2" jdbcType="VARCHAR" property="other2" />
+    <result column="other3" jdbcType="VARCHAR" property="other3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, donate_heart, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, 
+    type_apply, star_id_apply, name_apply, brand_desc_apply, phone_apply, join_desc_apply, 
+    money_apply, org_user, org_logo_url, donate_money, other1, other2, other3
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from welfare_org_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from welfare_org_info
+    where id = #{id,jdbcType=BIGINT}
+      and donate_heart = #{donateHeart,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDoKey">
+    delete from welfare_org_info
+    where id = #{id,jdbcType=BIGINT}
+      and donate_heart = #{donateHeart,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDoExample">
+    delete from welfare_org_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDo">
+    insert into welfare_org_info (id, donate_heart, is_Deleted, 
+      create_Operator, create_time, last_Operator, 
+      last_Modify_Time, type_apply, star_id_apply, 
+      name_apply, brand_desc_apply, phone_apply, 
+      join_desc_apply, money_apply, org_user, 
+      org_logo_url, donate_money, other1, 
+      other2, other3)
+    values (#{id,jdbcType=BIGINT}, #{donateHeart,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, 
+      #{createOperator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, 
+      #{lastModifyTime,jdbcType=TIMESTAMP}, #{typeApply,jdbcType=VARCHAR}, #{starIdApply,jdbcType=BIGINT}, 
+      #{nameApply,jdbcType=VARCHAR}, #{brandDescApply,jdbcType=VARCHAR}, #{phoneApply,jdbcType=VARCHAR}, 
+      #{joinDescApply,jdbcType=VARCHAR}, #{moneyApply,jdbcType=DOUBLE}, #{orgUser,jdbcType=VARCHAR}, 
+      #{orgLogoUrl,jdbcType=VARCHAR}, #{donateMoney,jdbcType=DOUBLE}, #{other1,jdbcType=VARCHAR}, 
+      #{other2,jdbcType=VARCHAR}, #{other3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDo">
+    insert into welfare_org_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="donateHeart != null">
+        donate_heart,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="typeApply != null">
+        type_apply,
+      </if>
+      <if test="starIdApply != null">
+        star_id_apply,
+      </if>
+      <if test="nameApply != null">
+        name_apply,
+      </if>
+      <if test="brandDescApply != null">
+        brand_desc_apply,
+      </if>
+      <if test="phoneApply != null">
+        phone_apply,
+      </if>
+      <if test="joinDescApply != null">
+        join_desc_apply,
+      </if>
+      <if test="moneyApply != null">
+        money_apply,
+      </if>
+      <if test="orgUser != null">
+        org_user,
+      </if>
+      <if test="orgLogoUrl != null">
+        org_logo_url,
+      </if>
+      <if test="donateMoney != null">
+        donate_money,
+      </if>
+      <if test="other1 != null">
+        other1,
+      </if>
+      <if test="other2 != null">
+        other2,
+      </if>
+      <if test="other3 != null">
+        other3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="donateHeart != null">
+        #{donateHeart,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeApply != null">
+        #{typeApply,jdbcType=VARCHAR},
+      </if>
+      <if test="starIdApply != null">
+        #{starIdApply,jdbcType=BIGINT},
+      </if>
+      <if test="nameApply != null">
+        #{nameApply,jdbcType=VARCHAR},
+      </if>
+      <if test="brandDescApply != null">
+        #{brandDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneApply != null">
+        #{phoneApply,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDescApply != null">
+        #{joinDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyApply != null">
+        #{moneyApply,jdbcType=DOUBLE},
+      </if>
+      <if test="orgUser != null">
+        #{orgUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLogoUrl != null">
+        #{orgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="donateMoney != null">
+        #{donateMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        #{other3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDoExample" resultType="java.lang.Long">
+    select count(*) from welfare_org_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update welfare_org_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.donateHeart != null">
+        donate_heart = #{record.donateHeart,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.typeApply != null">
+        type_apply = #{record.typeApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starIdApply != null">
+        star_id_apply = #{record.starIdApply,jdbcType=BIGINT},
+      </if>
+      <if test="record.nameApply != null">
+        name_apply = #{record.nameApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandDescApply != null">
+        brand_desc_apply = #{record.brandDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneApply != null">
+        phone_apply = #{record.phoneApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinDescApply != null">
+        join_desc_apply = #{record.joinDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moneyApply != null">
+        money_apply = #{record.moneyApply,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orgUser != null">
+        org_user = #{record.orgUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgLogoUrl != null">
+        org_logo_url = #{record.orgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.donateMoney != null">
+        donate_money = #{record.donateMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.other1 != null">
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null">
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other3 != null">
+        other3 = #{record.other3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update welfare_org_info
+    set id = #{record.id,jdbcType=BIGINT},
+      donate_heart = #{record.donateHeart,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      type_apply = #{record.typeApply,jdbcType=VARCHAR},
+      star_id_apply = #{record.starIdApply,jdbcType=BIGINT},
+      name_apply = #{record.nameApply,jdbcType=VARCHAR},
+      brand_desc_apply = #{record.brandDescApply,jdbcType=VARCHAR},
+      phone_apply = #{record.phoneApply,jdbcType=VARCHAR},
+      join_desc_apply = #{record.joinDescApply,jdbcType=VARCHAR},
+      money_apply = #{record.moneyApply,jdbcType=DOUBLE},
+      org_user = #{record.orgUser,jdbcType=VARCHAR},
+      org_logo_url = #{record.orgLogoUrl,jdbcType=VARCHAR},
+      donate_money = #{record.donateMoney,jdbcType=DOUBLE},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR},
+      other3 = #{record.other3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDo">
+    update welfare_org_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeApply != null">
+        type_apply = #{typeApply,jdbcType=VARCHAR},
+      </if>
+      <if test="starIdApply != null">
+        star_id_apply = #{starIdApply,jdbcType=BIGINT},
+      </if>
+      <if test="nameApply != null">
+        name_apply = #{nameApply,jdbcType=VARCHAR},
+      </if>
+      <if test="brandDescApply != null">
+        brand_desc_apply = #{brandDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneApply != null">
+        phone_apply = #{phoneApply,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDescApply != null">
+        join_desc_apply = #{joinDescApply,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyApply != null">
+        money_apply = #{moneyApply,jdbcType=DOUBLE},
+      </if>
+      <if test="orgUser != null">
+        org_user = #{orgUser,jdbcType=VARCHAR},
+      </if>
+      <if test="orgLogoUrl != null">
+        org_logo_url = #{orgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="donateMoney != null">
+        donate_money = #{donateMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="other1 != null">
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        other3 = #{other3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and donate_heart = #{donateHeart,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.welfare.bean.WelfareOrgInfoDo">
+    update welfare_org_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      type_apply = #{typeApply,jdbcType=VARCHAR},
+      star_id_apply = #{starIdApply,jdbcType=BIGINT},
+      name_apply = #{nameApply,jdbcType=VARCHAR},
+      brand_desc_apply = #{brandDescApply,jdbcType=VARCHAR},
+      phone_apply = #{phoneApply,jdbcType=VARCHAR},
+      join_desc_apply = #{joinDescApply,jdbcType=VARCHAR},
+      money_apply = #{moneyApply,jdbcType=DOUBLE},
+      org_user = #{orgUser,jdbcType=VARCHAR},
+      org_logo_url = #{orgLogoUrl,jdbcType=VARCHAR},
+      donate_money = #{donateMoney,jdbcType=DOUBLE},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR},
+      other3 = #{other3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and donate_heart = #{donateHeart,jdbcType=BIGINT}
+  </update>
+</mapper>

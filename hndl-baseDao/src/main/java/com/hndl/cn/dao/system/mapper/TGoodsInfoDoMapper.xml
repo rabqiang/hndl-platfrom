@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TGoodsInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TGoodsInfoDo">
+    <id column="goodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="goodsType" jdbcType="VARCHAR" property="goodstype" />
+    <result column="numbers" jdbcType="BIGINT" property="numbers" />
+    <result column="goodsBrand" jdbcType="VARCHAR" property="goodsbrand" />
+    <result column="goodsFormat" jdbcType="VARCHAR" property="goodsformat" />
+    <result column="isShelves" jdbcType="INTEGER" property="isshelves" />
+    <result column="shelvesDate" jdbcType="TIMESTAMP" property="shelvesdate" />
+    <result column="goodsIntegral" jdbcType="BIGINT" property="goodsintegral" />
+    <result column="marketPrice" jdbcType="DOUBLE" property="marketprice" />
+    <result column="payPrice" jdbcType="DOUBLE" property="payprice" />
+    <result column="costPrice" jdbcType="DOUBLE" property="costprice" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="other1" jdbcType="VARCHAR" property="other1" />
+    <result column="other2" jdbcType="VARCHAR" property="other2" />
+    <result column="other3" jdbcType="VARCHAR" property="other3" />
+    <result column="other4" jdbcType="VARCHAR" property="other4" />
+    <result column="other5" jdbcType="VARCHAR" property="other5" />
+    <result column="other6" jdbcType="VARCHAR" property="other6" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goodsCode, goodsName, goodsType, numbers, goodsBrand, goodsFormat, isShelves, shelvesDate, 
+    goodsIntegral, marketPrice, payPrice, costPrice, description, image, isDelete, other1, 
+    other2, other3, other4, other5, other6
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_goods_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods_info
+    where goodsCode = #{goodscode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_goods_info
+    where goodsCode = #{goodscode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDoExample">
+    delete from t_goods_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDo">
+    insert into t_goods_info (goodsCode, goodsName, goodsType, 
+      numbers, goodsBrand, goodsFormat, 
+      isShelves, shelvesDate, goodsIntegral, 
+      marketPrice, payPrice, costPrice, 
+      description, image, isDelete, 
+      other1, other2, other3, 
+      other4, other5, other6
+      )
+    values (#{goodscode,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodstype,jdbcType=VARCHAR}, 
+      #{numbers,jdbcType=BIGINT}, #{goodsbrand,jdbcType=VARCHAR}, #{goodsformat,jdbcType=VARCHAR}, 
+      #{isshelves,jdbcType=INTEGER}, #{shelvesdate,jdbcType=TIMESTAMP}, #{goodsintegral,jdbcType=BIGINT}, 
+      #{marketprice,jdbcType=DOUBLE}, #{payprice,jdbcType=DOUBLE}, #{costprice,jdbcType=DOUBLE}, 
+      #{description,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}, #{other3,jdbcType=VARCHAR}, 
+      #{other4,jdbcType=VARCHAR}, #{other5,jdbcType=VARCHAR}, #{other6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDo">
+    insert into t_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodscode != null">
+        goodsCode,
+      </if>
+      <if test="goodsname != null">
+        goodsName,
+      </if>
+      <if test="goodstype != null">
+        goodsType,
+      </if>
+      <if test="numbers != null">
+        numbers,
+      </if>
+      <if test="goodsbrand != null">
+        goodsBrand,
+      </if>
+      <if test="goodsformat != null">
+        goodsFormat,
+      </if>
+      <if test="isshelves != null">
+        isShelves,
+      </if>
+      <if test="shelvesdate != null">
+        shelvesDate,
+      </if>
+      <if test="goodsintegral != null">
+        goodsIntegral,
+      </if>
+      <if test="marketprice != null">
+        marketPrice,
+      </if>
+      <if test="payprice != null">
+        payPrice,
+      </if>
+      <if test="costprice != null">
+        costPrice,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+      <if test="other1 != null">
+        other1,
+      </if>
+      <if test="other2 != null">
+        other2,
+      </if>
+      <if test="other3 != null">
+        other3,
+      </if>
+      <if test="other4 != null">
+        other4,
+      </if>
+      <if test="other5 != null">
+        other5,
+      </if>
+      <if test="other6 != null">
+        other6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstype != null">
+        #{goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null">
+        #{numbers,jdbcType=BIGINT},
+      </if>
+      <if test="goodsbrand != null">
+        #{goodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsformat != null">
+        #{goodsformat,jdbcType=VARCHAR},
+      </if>
+      <if test="isshelves != null">
+        #{isshelves,jdbcType=INTEGER},
+      </if>
+      <if test="shelvesdate != null">
+        #{shelvesdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsintegral != null">
+        #{goodsintegral,jdbcType=BIGINT},
+      </if>
+      <if test="marketprice != null">
+        #{marketprice,jdbcType=DOUBLE},
+      </if>
+      <if test="payprice != null">
+        #{payprice,jdbcType=DOUBLE},
+      </if>
+      <if test="costprice != null">
+        #{costprice,jdbcType=DOUBLE},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        #{other3,jdbcType=VARCHAR},
+      </if>
+      <if test="other4 != null">
+        #{other4,jdbcType=VARCHAR},
+      </if>
+      <if test="other5 != null">
+        #{other5,jdbcType=VARCHAR},
+      </if>
+      <if test="other6 != null">
+        #{other6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDoExample" resultType="java.lang.Long">
+    select count(*) from t_goods_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_goods_info
+    <set>
+      <if test="record.goodscode != null">
+        goodsCode = #{record.goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsname != null">
+        goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodstype != null">
+        goodsType = #{record.goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numbers != null">
+        numbers = #{record.numbers,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsbrand != null">
+        goodsBrand = #{record.goodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsformat != null">
+        goodsFormat = #{record.goodsformat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isshelves != null">
+        isShelves = #{record.isshelves,jdbcType=INTEGER},
+      </if>
+      <if test="record.shelvesdate != null">
+        shelvesDate = #{record.shelvesdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsintegral != null">
+        goodsIntegral = #{record.goodsintegral,jdbcType=BIGINT},
+      </if>
+      <if test="record.marketprice != null">
+        marketPrice = #{record.marketprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payprice != null">
+        payPrice = #{record.payprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.costprice != null">
+        costPrice = #{record.costprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null">
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null">
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null">
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other3 != null">
+        other3 = #{record.other3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other4 != null">
+        other4 = #{record.other4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other5 != null">
+        other5 = #{record.other5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other6 != null">
+        other6 = #{record.other6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_goods_info
+    set goodsCode = #{record.goodscode,jdbcType=VARCHAR},
+      goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      goodsType = #{record.goodstype,jdbcType=VARCHAR},
+      numbers = #{record.numbers,jdbcType=BIGINT},
+      goodsBrand = #{record.goodsbrand,jdbcType=VARCHAR},
+      goodsFormat = #{record.goodsformat,jdbcType=VARCHAR},
+      isShelves = #{record.isshelves,jdbcType=INTEGER},
+      shelvesDate = #{record.shelvesdate,jdbcType=TIMESTAMP},
+      goodsIntegral = #{record.goodsintegral,jdbcType=BIGINT},
+      marketPrice = #{record.marketprice,jdbcType=DOUBLE},
+      payPrice = #{record.payprice,jdbcType=DOUBLE},
+      costPrice = #{record.costprice,jdbcType=DOUBLE},
+      description = #{record.description,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      isDelete = #{record.isdelete,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR},
+      other3 = #{record.other3,jdbcType=VARCHAR},
+      other4 = #{record.other4,jdbcType=VARCHAR},
+      other5 = #{record.other5,jdbcType=VARCHAR},
+      other6 = #{record.other6,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDo">
+    update t_goods_info
+    <set>
+      <if test="goodsname != null">
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstype != null">
+        goodsType = #{goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null">
+        numbers = #{numbers,jdbcType=BIGINT},
+      </if>
+      <if test="goodsbrand != null">
+        goodsBrand = #{goodsbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsformat != null">
+        goodsFormat = #{goodsformat,jdbcType=VARCHAR},
+      </if>
+      <if test="isshelves != null">
+        isShelves = #{isshelves,jdbcType=INTEGER},
+      </if>
+      <if test="shelvesdate != null">
+        shelvesDate = #{shelvesdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsintegral != null">
+        goodsIntegral = #{goodsintegral,jdbcType=BIGINT},
+      </if>
+      <if test="marketprice != null">
+        marketPrice = #{marketprice,jdbcType=DOUBLE},
+      </if>
+      <if test="payprice != null">
+        payPrice = #{payprice,jdbcType=DOUBLE},
+      </if>
+      <if test="costprice != null">
+        costPrice = #{costprice,jdbcType=DOUBLE},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null">
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        other3 = #{other3,jdbcType=VARCHAR},
+      </if>
+      <if test="other4 != null">
+        other4 = #{other4,jdbcType=VARCHAR},
+      </if>
+      <if test="other5 != null">
+        other5 = #{other5,jdbcType=VARCHAR},
+      </if>
+      <if test="other6 != null">
+        other6 = #{other6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodsCode = #{goodscode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TGoodsInfoDo">
+    update t_goods_info
+    set goodsName = #{goodsname,jdbcType=VARCHAR},
+      goodsType = #{goodstype,jdbcType=VARCHAR},
+      numbers = #{numbers,jdbcType=BIGINT},
+      goodsBrand = #{goodsbrand,jdbcType=VARCHAR},
+      goodsFormat = #{goodsformat,jdbcType=VARCHAR},
+      isShelves = #{isshelves,jdbcType=INTEGER},
+      shelvesDate = #{shelvesdate,jdbcType=TIMESTAMP},
+      goodsIntegral = #{goodsintegral,jdbcType=BIGINT},
+      marketPrice = #{marketprice,jdbcType=DOUBLE},
+      payPrice = #{payprice,jdbcType=DOUBLE},
+      costPrice = #{costprice,jdbcType=DOUBLE},
+      description = #{description,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      isDelete = #{isdelete,jdbcType=INTEGER},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR},
+      other3 = #{other3,jdbcType=VARCHAR},
+      other4 = #{other4,jdbcType=VARCHAR},
+      other5 = #{other5,jdbcType=VARCHAR},
+      other6 = #{other6,jdbcType=VARCHAR}
+    where goodsCode = #{goodscode,jdbcType=VARCHAR}
+  </update>
+</mapper>

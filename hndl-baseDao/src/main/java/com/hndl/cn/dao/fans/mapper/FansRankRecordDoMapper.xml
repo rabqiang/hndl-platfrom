@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.fans.mapper.FansRankRecordDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.fans.bean.FansRankRecordDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="star_id" jdbcType="BIGINT" property="starId" />
+    <result column="vote_count" jdbcType="INTEGER" property="voteCount" />
+    <result column="count_date" jdbcType="VARCHAR" property="countDate" />
+    <result column="count_type" jdbcType="VARCHAR" property="countType" />
+    <result column="other1" jdbcType="VARCHAR" property="other1" />
+    <result column="other2" jdbcType="VARCHAR" property="other2" />
+    <result column="other3" jdbcType="VARCHAR" property="other3" />
+    <result column="sys_uni_id" jdbcType="VARCHAR" property="sysUniId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_url" jdbcType="VARCHAR" property="headUrl" />
+    <result column="person_img_url_min" jdbcType="VARCHAR" property="personImgUrlMin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, user_id, 
+    star_id, vote_count, count_date, count_type, other1, other2, other3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from star_fans_experience_count
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from star_fans_experience_count
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.hndl.cn.dao.fans.bean.FansRankRecordDo" useGeneratedKeys="true">
+    insert into star_fans_experience_count (is_Deleted, create_Operator, create_time, 
+      last_Operator, last_Modify_Time, user_id, 
+      star_id, vote_count, count_date, 
+      count_type, other1, other2, 
+      other3)
+    values (#{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{starId,jdbcType=BIGINT}, #{voteCount,jdbcType=INTEGER}, #{countDate,jdbcType=VARCHAR}, 
+      #{countType,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}, 
+      #{other3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.hndl.cn.dao.fans.bean.FansRankRecordDo" useGeneratedKeys="true">
+    insert into star_fans_experience_count
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="starId != null">
+        star_id,
+      </if>
+      <if test="voteCount != null">
+        vote_count,
+      </if>
+      <if test="countDate != null">
+        count_date,
+      </if>
+      <if test="countType != null">
+        count_type,
+      </if>
+      <if test="other1 != null">
+        other1,
+      </if>
+      <if test="other2 != null">
+        other2,
+      </if>
+      <if test="other3 != null">
+        other3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="starId != null">
+        #{starId,jdbcType=BIGINT},
+      </if>
+      <if test="voteCount != null">
+        #{voteCount,jdbcType=INTEGER},
+      </if>
+      <if test="countDate != null">
+        #{countDate,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        #{countType,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        #{other3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.fans.bean.FansRankRecordDo">
+    update star_fans_experience_count
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="starId != null">
+        star_id = #{starId,jdbcType=BIGINT},
+      </if>
+      <if test="voteCount != null">
+        vote_count = #{voteCount,jdbcType=INTEGER},
+      </if>
+      <if test="countDate != null">
+        count_date = #{countDate,jdbcType=VARCHAR},
+      </if>
+      <if test="countType != null">
+        count_type = #{countType,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null">
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        other3 = #{other3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.fans.bean.FansRankRecordDo">
+    update star_fans_experience_count
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      star_id = #{starId,jdbcType=BIGINT},
+      vote_count = #{voteCount,jdbcType=INTEGER},
+      count_date = #{countDate,jdbcType=VARCHAR},
+      count_type = #{countType,jdbcType=VARCHAR},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR},
+      other3 = #{other3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryDayRankByDate" resultMap="BaseResultMap">
+    SELECT
+      s.*, u.person_img_url_min,u.sys_uni_id,
+      u.nick_name,
+      g.head_url,
+      g.`name`,
+      e.title_fans
+    FROM
+      star_fans_experience_count s LEFT JOIN game_star_vote_express e ON s.star_id = e.star_id AND s.user_id = e.user_id
+      ,common_user_info u,
+      game_star_vote g
+    WHERE
+        s.is_Deleted = 'n'
+    AND e.is_Deleted = 'n'
+    AND s.star_id = g.id
+    AND s.user_id = u.id
+    and s.count_date = #{0}
+    ORDER BY vote_count DESC,s.last_Modify_Time asc
+    LIMIT 100
+  </select>
+
+  <select id="queryWeekRankByDate" resultMap="BaseResultMap">
+    SELECT
+      s.*, u.person_img_url_min,u.sys_uni_id,
+      u.nick_name,
+      g.head_url,
+      g.`name`,
+      e.title_fans
+    FROM
+        star_fans_experience_count s LEFT JOIN game_star_vote_express e ON s.star_id = e.star_id AND s.user_id = e.user_id
+        ,common_user_info u,
+        game_star_vote g
+    WHERE
+        s.is_Deleted = 'n'
+    AND e.is_Deleted = 'n'
+    AND s.star_id = g.id
+    AND s.user_id = u.id
+    and s.count_date = #{0}
+    ORDER BY vote_count DESC,s.last_Modify_Time asc
+    LIMIT 100
+  </select>
+
+  <select id="queryWeekRankByDateAll" resultMap="BaseResultMap">
+    SELECT
+      s.*, u.person_img_url_min,u.sys_uni_id,
+      u.nick_name,
+      g.head_url,
+      g.`name`,
+      e.title_fans
+    FROM
+        star_fans_experience_count s LEFT JOIN game_star_vote_express e ON s.star_id = e.star_id AND s.user_id = e.user_id
+        ,common_user_info u,
+        game_star_vote g
+    WHERE
+        s.is_Deleted = 'n'
+    AND e.is_Deleted = 'n'
+    AND s.star_id = g.id
+    AND s.user_id = u.id
+    and s.count_date = #{0}
+    ORDER BY vote_count DESC,s.last_Modify_Time asc
+  </select>
+
+  <select id="queryMonthRankByDate" resultMap="BaseResultMap">
+    SELECT
+      s.*, u.person_img_url_min,u.sys_uni_id,
+      u.nick_name,
+      g.head_url,
+      g.`name`,
+      e.title_fans
+    FROM
+      star_fans_experience_count s LEFT JOIN game_star_vote_express e ON s.star_id = e.star_id AND s.user_id = e.user_id
+      ,common_user_info u,
+      game_star_vote g
+    WHERE
+      s.is_Deleted = 'n'
+    AND e.is_Deleted = 'n'
+    AND s.star_id = g.id
+    AND s.user_id = u.id
+    and s.count_date = #{0}
+    ORDER BY vote_count DESC,s.last_Modify_Time asc
+    LIMIT 100
+  </select>
+
+  <select id="queryMonthRankByDateAll" resultMap="BaseResultMap">
+    SELECT
+      s.*, u.person_img_url_min,u.sys_uni_id,
+      u.nick_name,
+      g.head_url,
+      g.`name`,
+      e.title_fans
+    FROM
+      star_fans_experience_count s LEFT JOIN game_star_vote_express e ON s.star_id = e.star_id AND s.user_id = e.user_id
+      ,common_user_info u,
+      game_star_vote g
+    WHERE
+      s.is_Deleted = 'n'
+    AND e.is_Deleted = 'n'
+    AND s.star_id = g.id
+    AND s.user_id = u.id
+    and s.count_date = #{0}
+    ORDER BY vote_count DESC,s.last_Modify_Time asc
+  </select>
+
+</mapper>

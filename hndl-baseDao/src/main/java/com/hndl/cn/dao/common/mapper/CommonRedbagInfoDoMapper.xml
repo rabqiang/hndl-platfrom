@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.common.mapper.CommonRedbagInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.common.bean.CommonRedbagInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="game_id" jdbcType="BIGINT" property="gameId" />
+    <result column="total_money" jdbcType="DOUBLE" property="totalMoney" />
+    <result column="total_count" jdbcType="INTEGER" property="totalCount" />
+    <result column="count_alr" jdbcType="INTEGER" property="countAlr" />
+    <result column="supporter" jdbcType="VARCHAR" property="supporter" />
+    <result column="money_alr" jdbcType="DOUBLE" property="moneyAlr" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="send_count" jdbcType="INTEGER" property="sendCount" />
+    <result column="now_redbag_count" jdbcType="INTEGER" property="nowRedbagCount" />
+    <result column="redbag_type" jdbcType="VARCHAR" property="redbagType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, game_id, 
+    total_money, total_count, count_alr, supporter, money_alr, start_time, send_count, 
+    now_redbag_count, redbag_type
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_redbag_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_redbag_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_redbag_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDoExample">
+    delete from common_redbag_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDo">
+    insert into common_redbag_info (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      game_id, total_money, total_count, 
+      count_alr, supporter, money_alr, 
+      start_time, send_count, now_redbag_count, 
+      redbag_type)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{gameId,jdbcType=BIGINT}, #{totalMoney,jdbcType=DOUBLE}, #{totalCount,jdbcType=INTEGER}, 
+      #{countAlr,jdbcType=INTEGER}, #{supporter,jdbcType=VARCHAR}, #{moneyAlr,jdbcType=DOUBLE}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{sendCount,jdbcType=INTEGER}, #{nowRedbagCount,jdbcType=INTEGER}, 
+      #{redbagType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDo">
+    insert into common_redbag_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="totalMoney != null">
+        total_money,
+      </if>
+      <if test="totalCount != null">
+        total_count,
+      </if>
+      <if test="countAlr != null">
+        count_alr,
+      </if>
+      <if test="supporter != null">
+        supporter,
+      </if>
+      <if test="moneyAlr != null">
+        money_alr,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="sendCount != null">
+        send_count,
+      </if>
+      <if test="nowRedbagCount != null">
+        now_redbag_count,
+      </if>
+      <if test="redbagType != null">
+        redbag_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="totalMoney != null">
+        #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="totalCount != null">
+        #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="countAlr != null">
+        #{countAlr,jdbcType=INTEGER},
+      </if>
+      <if test="supporter != null">
+        #{supporter,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyAlr != null">
+        #{moneyAlr,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendCount != null">
+        #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="nowRedbagCount != null">
+        #{nowRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagType != null">
+        #{redbagType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDoExample" resultType="java.lang.Long">
+    select count(*) from common_redbag_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_redbag_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalMoney != null">
+        total_money = #{record.totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalCount != null">
+        total_count = #{record.totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.countAlr != null">
+        count_alr = #{record.countAlr,jdbcType=INTEGER},
+      </if>
+      <if test="record.supporter != null">
+        supporter = #{record.supporter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moneyAlr != null">
+        money_alr = #{record.moneyAlr,jdbcType=DOUBLE},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendCount != null">
+        send_count = #{record.sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.nowRedbagCount != null">
+        now_redbag_count = #{record.nowRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.redbagType != null">
+        redbag_type = #{record.redbagType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_redbag_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      game_id = #{record.gameId,jdbcType=BIGINT},
+      total_money = #{record.totalMoney,jdbcType=DOUBLE},
+      total_count = #{record.totalCount,jdbcType=INTEGER},
+      count_alr = #{record.countAlr,jdbcType=INTEGER},
+      supporter = #{record.supporter,jdbcType=VARCHAR},
+      money_alr = #{record.moneyAlr,jdbcType=DOUBLE},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      send_count = #{record.sendCount,jdbcType=INTEGER},
+      now_redbag_count = #{record.nowRedbagCount,jdbcType=INTEGER},
+      redbag_type = #{record.redbagType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDo">
+    update common_redbag_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="totalMoney != null">
+        total_money = #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="totalCount != null">
+        total_count = #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="countAlr != null">
+        count_alr = #{countAlr,jdbcType=INTEGER},
+      </if>
+      <if test="supporter != null">
+        supporter = #{supporter,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyAlr != null">
+        money_alr = #{moneyAlr,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendCount != null">
+        send_count = #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="nowRedbagCount != null">
+        now_redbag_count = #{nowRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagType != null">
+        redbag_type = #{redbagType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.common.bean.CommonRedbagInfoDo">
+    update common_redbag_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      game_id = #{gameId,jdbcType=BIGINT},
+      total_money = #{totalMoney,jdbcType=DOUBLE},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      count_alr = #{countAlr,jdbcType=INTEGER},
+      supporter = #{supporter,jdbcType=VARCHAR},
+      money_alr = #{moneyAlr,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      send_count = #{sendCount,jdbcType=INTEGER},
+      now_redbag_count = #{nowRedbagCount,jdbcType=INTEGER},
+      redbag_type = #{redbagType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

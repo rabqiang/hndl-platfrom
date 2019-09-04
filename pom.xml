@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hndl.cn</groupId>
+    <artifactId>hndl-platform</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>hndl-platform</name>
+    <packaging>pom</packaging>
+    <description>Demo project for Spring Boot</description>
+
+
+    <modules>
+        <module>hndl-utils</module>
+        <module>hndl-base</module>
+        <module>hndl-nosql</module>
+        <module>hndl-ali</module>
+        <module>hndl-baseDao</module>
+        <module>hndl-mysqlManager</module>
+        <module>hndl-mongoManager</module>
+        <module>hndl-mghdAdmin</module>
+        <module>hndl-mghdSys</module>
+        <module>hndl-shopAdmin</module>
+        <module>hndl-shopSys</module>
+        <module>hndl-mghdJob</module>
+        <module>hndl-shopJob\</module>
+        <module>hndl-sign</module>
+        <module>hndl-collect</module>
+        <module>hndl-wechatSys</module>
+        <module>hndl-chatSys</module>
+        <module>hndl-activitySys</module>
+        <module>hndl-paySys</module>
+        <module>hndl-versionSys</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+
+        <!--子版本依赖-->
+        <sonProject.version>0.0.1-SNAPSHOT</sonProject.version>
+        <hndl.base.version>${sonProject.version}</hndl.base.version>
+        <hndl.utils.version>${sonProject.version}</hndl.utils.version>
+        <hndl.nosql.version>${sonProject.version}</hndl.nosql.version>
+        <hndl.mongodb.manager.version>${sonProject.version}</hndl.mongodb.manager.version>
+        <hndl.mysql.manager>${sonProject.version}</hndl.mysql.manager>
+        <hndl.ali.version>${sonProject.version}</hndl.ali.version>
+        <hndl.base.dao.version>${sonProject.version}</hndl.base.dao.version>
+        <hndl.mghd.admin.version>${sonProject.version}</hndl.mghd.admin.version>
+        <hndl.mghd.sys.version>${sonProject.version}</hndl.mghd.sys.version>
+        <hndl.shop.sys.version>${sonProject.version}</hndl.shop.sys.version>
+        <hndl.mghd.job.version>${sonProject.version}</hndl.mghd.job.version>
+        <hndl.shop.jon.version>${sonProject.version}</hndl.shop.jon.version>
+        <hndl.sign.version>${sonProject.version}</hndl.sign.version>
+        <hndl.collect.version>${sonProject.version}</hndl.collect.version>
+        <hndl.wechat.sys.version>${sonProject.version}</hndl.wechat.sys.version>
+        <hndl.chat.version>${sonProject.version}</hndl.chat.version>
+        <hndl.activity.sys.version>${sonProject.version}</hndl.activity.sys.version>
+        <hndl.pay.sys.version>${sonProject.version}</hndl.pay.sys.version>
+        <hndl.version.sys.version>>${sonProject.version}</hndl.version.sys.version>
+
+        <!-- 项目版本依赖 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring.boot.amqp.version>2.1.3.RELEASE</spring.boot.amqp.version>
+        <spring.boot.mongodb.version>2.1.3.RELEASE</spring.boot.mongodb.version>
+        <spring.boot.redis.version>2.1.3.RELEASE</spring.boot.redis.version>
+        <mybatis.spring.boot.version>2.0.0</mybatis.spring.boot.version>
+        <mysql.connector.java.varsion>8.0.15</mysql.connector.java.varsion>
+        <lombok.version>1.16.8</lombok.version>
+        <spring.boot.test.version>2.1.3</spring.boot.test.version>
+        <jackson.version>2.9.8</jackson.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <httpclient.version>4.5.3</httpclient.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+        <!--<tk.mybatis.version>2.1.5</tk.mybatis.version>-->
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <HikariCP.version>3.1.0</HikariCP.version>
+        <fastjson.version>1.2.56</fastjson.version>
+        <commons.pool2.version>2.4.2</commons.pool2.version>
+        <java.jwt.version>3.2.0</java.jwt.version>
+        <org.mybatis.version>1.3.1</org.mybatis.version>
+        <spring.boot.web.version>2.1.3.RELEASE</spring.boot.web.version>
+        <spring.beans.version>5.1.5.RELEASE</spring.beans.version>
+        <spring.boot.test.version>2.1.3.RELEASE</spring.boot.test.version>
+        <commons-collectionss4.version>4.3</commons-collectionss4.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <guava.version>22.0</guava.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <spring-boot-parent.version>2.1.3.RELEASE</spring-boot-parent.version>
+        <spring-context.version>5.1.5.RELEASE</spring-context.version>
+        <pagehelper.version>1.2.12</pagehelper.version>
+        <jackson-annotations.version>2.9.0</jackson-annotations.version>
+        <gson.version>2.8.5</gson.version>
+        <quartz.version>2.3.0</quartz.version>
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <dom4j.version>2.1.1</dom4j.version>
+        <hystrix.version>1.5.18</hystrix.version>
+        <shiro.spring.version>1.4.1</shiro.spring.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hndl.cn.base</groupId>
+                <artifactId>hndl-base</artifactId>
+                <version>${hndl.base.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.dao</groupId>
+                <artifactId>base-dao</artifactId>
+                <version>${hndl.base.dao.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.utils</groupId>
+                <artifactId>hndl-utils</artifactId>
+                <version>${hndl.utils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.ali</groupId>
+                <artifactId>hndl-ali</artifactId>
+                <version>${hndl.ali.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.mysql.manager</groupId>
+                <artifactId>hndl-mysql-manager</artifactId>
+                <version>${hndl.mysql.manager}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.nosql</groupId>
+                <artifactId>hndl-nosql</artifactId>
+                <version>${hndl.nosql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hndl.cn.mongodb.manager</groupId>
+                <artifactId>hndl-mongo-manager</artifactId>
+                <version>${hndl.mongodb.manager.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring.boot.amqp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                <version>${spring.boot.mongodb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring.boot.redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.beans.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot-parent.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>5.1.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-context.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java.varsion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.test.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${org.mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson-annotations.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+            </dependency>
+
+            <!--swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger2.version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>io.swagger</groupId>
+                                    <artifactId>swagger-models</artifactId>
+                                </exclusion>
+                            </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>1.5.21</version>
+            </dependency>
+
+            <!--        <dependency>-->
+            <!--            <groupId>io.swagger</groupId>-->
+            <!--            <artifactId>swagger-annotations</artifactId>-->
+            <!--            <version>1.5.21</version>-->
+            <!--        </dependency>-->
+            <!--        <dependency>-->
+            <!--            <groupId>io.swagger</groupId>-->
+            <!--            <artifactId>swagger-models</artifactId>-->
+            <!--            <version>1.5.21</version>-->
+            <!--        </dependency>-->
+
+
+            <!--<dependency>-->
+            <!--<groupId>tk.mybatis</groupId>-->
+            <!--<artifactId>mapper-spring-boot-starter</artifactId>-->
+            <!--<version>${tk.mybatis.version}</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${HikariCP.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collectionss4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--spring2.0集成redis所需common-pool2-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons.pool2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java.jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring-context.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz-jobs</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>3.9</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/com.netflix.hystrix/hystrix-core -->
+            <dependency>
+                <groupId>com.netflix.hystrix</groupId>
+                <artifactId>hystrix-core</artifactId>
+                <version>${hystrix.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>2.1.3.RELEASE</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/net.iharder/base64 -->
+            <dependency>
+                <groupId>net.iharder</groupId>
+                <artifactId>base64</artifactId>
+                <version>2.3.8</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.spring.version}</version>
+            </dependency>
+
+
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.3.RELEASE</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

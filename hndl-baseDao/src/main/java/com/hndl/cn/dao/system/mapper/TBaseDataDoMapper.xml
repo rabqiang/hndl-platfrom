@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TBaseDataDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TBaseDataDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="datacode" jdbcType="VARCHAR" property="datacode" />
+    <result column="dataname" jdbcType="VARCHAR" property="dataname" />
+    <result column="datatypes" jdbcType="CHAR" property="datatypes" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, datacode, dataname, datatypes, description
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_base_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDoExample">
+    delete from t_base_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDo">
+    insert into t_base_data (id, datacode, dataname, 
+      datatypes, description)
+    values (#{id,jdbcType=INTEGER}, #{datacode,jdbcType=VARCHAR}, #{dataname,jdbcType=VARCHAR}, 
+      #{datatypes,jdbcType=CHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDo">
+    insert into t_base_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="datacode != null">
+        datacode,
+      </if>
+      <if test="dataname != null">
+        dataname,
+      </if>
+      <if test="datatypes != null">
+        datatypes,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datacode != null">
+        #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataname != null">
+        #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatypes != null">
+        #{datatypes,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDoExample" resultType="java.lang.Long">
+    select count(*) from t_base_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_base_data
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.datacode != null">
+        datacode = #{record.datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataname != null">
+        dataname = #{record.dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datatypes != null">
+        datatypes = #{record.datatypes,jdbcType=CHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_base_data
+    set id = #{record.id,jdbcType=INTEGER},
+      datacode = #{record.datacode,jdbcType=VARCHAR},
+      dataname = #{record.dataname,jdbcType=VARCHAR},
+      datatypes = #{record.datatypes,jdbcType=CHAR},
+      description = #{record.description,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDo">
+    update t_base_data
+    <set>
+      <if test="datacode != null">
+        datacode = #{datacode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataname != null">
+        dataname = #{dataname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatypes != null">
+        datatypes = #{datatypes,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TBaseDataDo">
+    update t_base_data
+    set datacode = #{datacode,jdbcType=VARCHAR},
+      dataname = #{dataname,jdbcType=VARCHAR},
+      datatypes = #{datatypes,jdbcType=CHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

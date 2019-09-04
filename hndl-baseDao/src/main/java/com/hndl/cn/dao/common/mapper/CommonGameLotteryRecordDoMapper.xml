@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.common.mapper.CommonGameLotteryRecordDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="game_id" jdbcType="BIGINT" property="gameId" />
+    <result column="section" jdbcType="INTEGER" property="section" />
+    <result column="prize_id" jdbcType="BIGINT" property="prizeId" />
+    <result column="is_win" jdbcType="CHAR" property="isWin" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="is_give_prize" jdbcType="CHAR" property="isGivePrize" />
+    <result column="is_free_play" jdbcType="CHAR" property="isFreePlay" />
+    <result column="is_visitor" jdbcType="CHAR" property="isVisitor" />
+    <result column="device_number" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="is_get_prize" jdbcType="VARCHAR" property="isGetPrize" />
+    <result column="vote_id" jdbcType="BIGINT" property="voteId" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="guess_info_id" jdbcType="BIGINT" property="guessInfoId" />
+    <result column="is_cofirm_addr_out_date" jdbcType="CHAR" property="isCofirmAddrOutDate" />
+    <result column="pay_order_id" jdbcType="VARCHAR" property="payOrderId" />
+    <result column="start_record_id" jdbcType="BIGINT" property="startRecordId" />
+    <result column="is_start_vote" jdbcType="VARCHAR" property="isStartVote" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, game_id, 
+    `section`, prize_id, is_win, create_date, is_give_prize, is_free_play, is_visitor, 
+    device_number, is_get_prize, vote_id, group_name, guess_info_id, is_cofirm_addr_out_date, 
+    pay_order_id, start_record_id, is_start_vote
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_game_lottery_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_game_lottery_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_game_lottery_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDoExample">
+    delete from common_game_lottery_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDo">
+    insert into common_game_lottery_record (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      game_id, `section`, prize_id, 
+      is_win, create_date, is_give_prize, 
+      is_free_play, is_visitor, device_number, 
+      is_get_prize, vote_id, group_name, 
+      guess_info_id, is_cofirm_addr_out_date, pay_order_id, 
+      start_record_id, is_start_vote)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{gameId,jdbcType=BIGINT}, #{section,jdbcType=INTEGER}, #{prizeId,jdbcType=BIGINT}, 
+      #{isWin,jdbcType=CHAR}, #{createDate,jdbcType=DATE}, #{isGivePrize,jdbcType=CHAR}, 
+      #{isFreePlay,jdbcType=CHAR}, #{isVisitor,jdbcType=CHAR}, #{deviceNumber,jdbcType=VARCHAR}, 
+      #{isGetPrize,jdbcType=VARCHAR}, #{voteId,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}, 
+      #{guessInfoId,jdbcType=BIGINT}, #{isCofirmAddrOutDate,jdbcType=CHAR}, #{payOrderId,jdbcType=VARCHAR}, 
+      #{startRecordId,jdbcType=BIGINT}, #{isStartVote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDo">
+    insert into common_game_lottery_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="section != null">
+        `section`,
+      </if>
+      <if test="prizeId != null">
+        prize_id,
+      </if>
+      <if test="isWin != null">
+        is_win,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="isGivePrize != null">
+        is_give_prize,
+      </if>
+      <if test="isFreePlay != null">
+        is_free_play,
+      </if>
+      <if test="isVisitor != null">
+        is_visitor,
+      </if>
+      <if test="deviceNumber != null">
+        device_number,
+      </if>
+      <if test="isGetPrize != null">
+        is_get_prize,
+      </if>
+      <if test="voteId != null">
+        vote_id,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="guessInfoId != null">
+        guess_info_id,
+      </if>
+      <if test="isCofirmAddrOutDate != null">
+        is_cofirm_addr_out_date,
+      </if>
+      <if test="payOrderId != null">
+        pay_order_id,
+      </if>
+      <if test="startRecordId != null">
+        start_record_id,
+      </if>
+      <if test="isStartVote != null">
+        is_start_vote,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="section != null">
+        #{section,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null">
+        #{prizeId,jdbcType=BIGINT},
+      </if>
+      <if test="isWin != null">
+        #{isWin,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="isGivePrize != null">
+        #{isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="isFreePlay != null">
+        #{isFreePlay,jdbcType=CHAR},
+      </if>
+      <if test="isVisitor != null">
+        #{isVisitor,jdbcType=CHAR},
+      </if>
+      <if test="deviceNumber != null">
+        #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isGetPrize != null">
+        #{isGetPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="voteId != null">
+        #{voteId,jdbcType=BIGINT},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="guessInfoId != null">
+        #{guessInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="isCofirmAddrOutDate != null">
+        #{isCofirmAddrOutDate,jdbcType=CHAR},
+      </if>
+      <if test="payOrderId != null">
+        #{payOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="startRecordId != null">
+        #{startRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="isStartVote != null">
+        #{isStartVote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDoExample" resultType="java.lang.Long">
+    select count(*) from common_game_lottery_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_game_lottery_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=BIGINT},
+      </if>
+      <if test="record.section != null">
+        `section` = #{record.section,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeId != null">
+        prize_id = #{record.prizeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isWin != null">
+        is_win = #{record.isWin,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.isGivePrize != null">
+        is_give_prize = #{record.isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="record.isFreePlay != null">
+        is_free_play = #{record.isFreePlay,jdbcType=CHAR},
+      </if>
+      <if test="record.isVisitor != null">
+        is_visitor = #{record.isVisitor,jdbcType=CHAR},
+      </if>
+      <if test="record.deviceNumber != null">
+        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGetPrize != null">
+        is_get_prize = #{record.isGetPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteId != null">
+        vote_id = #{record.voteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guessInfoId != null">
+        guess_info_id = #{record.guessInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isCofirmAddrOutDate != null">
+        is_cofirm_addr_out_date = #{record.isCofirmAddrOutDate,jdbcType=CHAR},
+      </if>
+      <if test="record.payOrderId != null">
+        pay_order_id = #{record.payOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startRecordId != null">
+        start_record_id = #{record.startRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isStartVote != null">
+        is_start_vote = #{record.isStartVote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_game_lottery_record
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      game_id = #{record.gameId,jdbcType=BIGINT},
+      `section` = #{record.section,jdbcType=INTEGER},
+      prize_id = #{record.prizeId,jdbcType=BIGINT},
+      is_win = #{record.isWin,jdbcType=CHAR},
+      create_date = #{record.createDate,jdbcType=DATE},
+      is_give_prize = #{record.isGivePrize,jdbcType=CHAR},
+      is_free_play = #{record.isFreePlay,jdbcType=CHAR},
+      is_visitor = #{record.isVisitor,jdbcType=CHAR},
+      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      is_get_prize = #{record.isGetPrize,jdbcType=VARCHAR},
+      vote_id = #{record.voteId,jdbcType=BIGINT},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      guess_info_id = #{record.guessInfoId,jdbcType=BIGINT},
+      is_cofirm_addr_out_date = #{record.isCofirmAddrOutDate,jdbcType=CHAR},
+      pay_order_id = #{record.payOrderId,jdbcType=VARCHAR},
+      start_record_id = #{record.startRecordId,jdbcType=BIGINT},
+      is_start_vote = #{record.isStartVote,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDo">
+    update common_game_lottery_record
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=BIGINT},
+      </if>
+      <if test="section != null">
+        `section` = #{section,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null">
+        prize_id = #{prizeId,jdbcType=BIGINT},
+      </if>
+      <if test="isWin != null">
+        is_win = #{isWin,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="isGivePrize != null">
+        is_give_prize = #{isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="isFreePlay != null">
+        is_free_play = #{isFreePlay,jdbcType=CHAR},
+      </if>
+      <if test="isVisitor != null">
+        is_visitor = #{isVisitor,jdbcType=CHAR},
+      </if>
+      <if test="deviceNumber != null">
+        device_number = #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isGetPrize != null">
+        is_get_prize = #{isGetPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="voteId != null">
+        vote_id = #{voteId,jdbcType=BIGINT},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="guessInfoId != null">
+        guess_info_id = #{guessInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="isCofirmAddrOutDate != null">
+        is_cofirm_addr_out_date = #{isCofirmAddrOutDate,jdbcType=CHAR},
+      </if>
+      <if test="payOrderId != null">
+        pay_order_id = #{payOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="startRecordId != null">
+        start_record_id = #{startRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="isStartVote != null">
+        is_start_vote = #{isStartVote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.common.bean.CommonGameLotteryRecordDo">
+    update common_game_lottery_record
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      game_id = #{gameId,jdbcType=BIGINT},
+      `section` = #{section,jdbcType=INTEGER},
+      prize_id = #{prizeId,jdbcType=BIGINT},
+      is_win = #{isWin,jdbcType=CHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      is_give_prize = #{isGivePrize,jdbcType=CHAR},
+      is_free_play = #{isFreePlay,jdbcType=CHAR},
+      is_visitor = #{isVisitor,jdbcType=CHAR},
+      device_number = #{deviceNumber,jdbcType=VARCHAR},
+      is_get_prize = #{isGetPrize,jdbcType=VARCHAR},
+      vote_id = #{voteId,jdbcType=BIGINT},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      guess_info_id = #{guessInfoId,jdbcType=BIGINT},
+      is_cofirm_addr_out_date = #{isCofirmAddrOutDate,jdbcType=CHAR},
+      pay_order_id = #{payOrderId,jdbcType=VARCHAR},
+      start_record_id = #{startRecordId,jdbcType=BIGINT},
+      is_start_vote = #{isStartVote,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

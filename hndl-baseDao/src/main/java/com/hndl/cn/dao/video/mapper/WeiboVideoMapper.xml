@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.video.mapper.WeiboVideoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.video.bean.WeiboVideoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_admin" jdbcType="BIGINT" property="createAdmin" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="show_id" jdbcType="VARCHAR" property="showId" />
+    <result column="video_img" jdbcType="VARCHAR" property="videoImg" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_admin" jdbcType="BIGINT" property="updateAdmin" />
+    <result column="order_num" jdbcType="BIGINT" property="orderNum" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_time, create_admin, title, show_id, video_img, content, update_time, update_admin, 
+    order_num, remark, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from weibo_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weibo_video
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from weibo_video
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDoExample">
+    delete from weibo_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDo">
+    insert into weibo_video (id, create_time, create_admin, 
+      title, show_id, video_img, 
+      content, update_time, update_admin, 
+      order_num, remark, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createAdmin,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR}, #{showId,jdbcType=VARCHAR}, #{videoImg,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}, #{updateAdmin,jdbcType=BIGINT}, 
+      #{orderNum,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDo">
+    insert into weibo_video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createAdmin != null">
+        create_admin,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="showId != null">
+        show_id,
+      </if>
+      <if test="videoImg != null">
+        video_img,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateAdmin != null">
+        update_admin,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createAdmin != null">
+        #{createAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="showId != null">
+        #{showId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoImg != null">
+        #{videoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateAdmin != null">
+        #{updateAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDoExample" resultType="java.lang.Long">
+    select count(*) from weibo_video
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update weibo_video
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.createAdmin != null">
+        create_admin = #{record.createAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showId != null">
+        show_id = #{record.showId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoImg != null">
+        video_img = #{record.videoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateAdmin != null">
+        update_admin = #{record.updateAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update weibo_video
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=DATE},
+      create_admin = #{record.createAdmin,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      show_id = #{record.showId,jdbcType=VARCHAR},
+      video_img = #{record.videoImg,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      update_admin = #{record.updateAdmin,jdbcType=BIGINT},
+      order_num = #{record.orderNum,jdbcType=BIGINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDo">
+    update weibo_video
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createAdmin != null">
+        create_admin = #{createAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="showId != null">
+        show_id = #{showId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoImg != null">
+        video_img = #{videoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateAdmin != null">
+        update_admin = #{updateAdmin,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.video.bean.WeiboVideoDo">
+    update weibo_video
+    set create_time = #{createTime,jdbcType=DATE},
+      create_admin = #{createAdmin,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      show_id = #{showId,jdbcType=VARCHAR},
+      video_img = #{videoImg,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_admin = #{updateAdmin,jdbcType=BIGINT},
+      order_num = #{orderNum,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

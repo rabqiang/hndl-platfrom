@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.common.mapper.CommonGameInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.common.bean.CommonGameInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="game_desc" jdbcType="VARCHAR" property="gameDesc" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="title_second" jdbcType="VARCHAR" property="titleSecond" />
+    <result column="apply_count" jdbcType="INTEGER" property="applyCount" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="section" jdbcType="VARCHAR" property="section" />
+    <result column="free_times" jdbcType="INTEGER" property="freeTimes" />
+    <result column="no_free_times" jdbcType="INTEGER" property="noFreeTimes" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="pay_count" jdbcType="INTEGER" property="payCount" />
+    <result column="is_show" jdbcType="CHAR" property="isShow" />
+    <result column="read_count" jdbcType="INTEGER" property="readCount" />
+    <result column="ad_url1" jdbcType="VARCHAR" property="adUrl1" />
+    <result column="ad_url2" jdbcType="VARCHAR" property="adUrl2" />
+    <result column="ad_url3" jdbcType="VARCHAR" property="adUrl3" />
+    <result column="ad_url4" jdbcType="VARCHAR" property="adUrl4" />
+    <result column="ad_url5" jdbcType="VARCHAR" property="adUrl5" />
+    <result column="rule_url" jdbcType="VARCHAR" property="ruleUrl" />
+    <result column="guess_group" jdbcType="VARCHAR" property="guessGroup" />
+    <result column="vote_id" jdbcType="BIGINT" property="voteId" />
+    <result column="content_id" jdbcType="VARCHAR" property="contentId" />
+    <result column="show_title" jdbcType="VARCHAR" property="showTitle" />
+    <result column="show_desc" jdbcType="VARCHAR" property="showDesc" />
+    <result column="show_img" jdbcType="VARCHAR" property="showImg" />
+    <result column="show_url" jdbcType="VARCHAR" property="showUrl" />
+    <result column="to_shop_onclick_count" jdbcType="INTEGER" property="toShopOnclickCount" />
+    <result column="init_apply_count" jdbcType="INTEGER" property="initApplyCount" />
+    <result column="other1" jdbcType="VARCHAR" property="other1" />
+    <result column="other2" jdbcType="VARCHAR" property="other2" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, game_name, 
+    game_desc, activity_id, order_num, start_date, end_date, title, title_second, apply_count, 
+    img_url, `type`, `section`, free_times, no_free_times, pay_type, pay_count, is_show, 
+    read_count, ad_url1, ad_url2, ad_url3, ad_url4, ad_url5, rule_url, guess_group, vote_id, 
+    content_id, show_title, show_desc, show_img, show_url, to_shop_onclick_count, init_apply_count, 
+    other1, other2
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_game_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_game_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDoExample">
+    delete from common_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDo">
+    insert into common_game_info (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      game_name, game_desc, activity_id, 
+      order_num, start_date, end_date, 
+      title, title_second, apply_count, 
+      img_url, `type`, `section`, 
+      free_times, no_free_times, pay_type, 
+      pay_count, is_show, read_count, 
+      ad_url1, ad_url2, ad_url3, 
+      ad_url4, ad_url5, rule_url, 
+      guess_group, vote_id, content_id, 
+      show_title, show_desc, show_img, 
+      show_url, to_shop_onclick_count, init_apply_count, 
+      other1, other2)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{gameName,jdbcType=VARCHAR}, #{gameDesc,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, 
+      #{orderNum,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{titleSecond,jdbcType=VARCHAR}, #{applyCount,jdbcType=INTEGER}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{section,jdbcType=VARCHAR}, 
+      #{freeTimes,jdbcType=INTEGER}, #{noFreeTimes,jdbcType=INTEGER}, #{payType,jdbcType=VARCHAR}, 
+      #{payCount,jdbcType=INTEGER}, #{isShow,jdbcType=CHAR}, #{readCount,jdbcType=INTEGER}, 
+      #{adUrl1,jdbcType=VARCHAR}, #{adUrl2,jdbcType=VARCHAR}, #{adUrl3,jdbcType=VARCHAR}, 
+      #{adUrl4,jdbcType=VARCHAR}, #{adUrl5,jdbcType=VARCHAR}, #{ruleUrl,jdbcType=VARCHAR}, 
+      #{guessGroup,jdbcType=VARCHAR}, #{voteId,jdbcType=BIGINT}, #{contentId,jdbcType=VARCHAR}, 
+      #{showTitle,jdbcType=VARCHAR}, #{showDesc,jdbcType=VARCHAR}, #{showImg,jdbcType=VARCHAR}, 
+      #{showUrl,jdbcType=VARCHAR}, #{toShopOnclickCount,jdbcType=INTEGER}, #{initApplyCount,jdbcType=INTEGER}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDo">
+    insert into common_game_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="gameName != null">
+        game_name,
+      </if>
+      <if test="gameDesc != null">
+        game_desc,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="titleSecond != null">
+        title_second,
+      </if>
+      <if test="applyCount != null">
+        apply_count,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="section != null">
+        `section`,
+      </if>
+      <if test="freeTimes != null">
+        free_times,
+      </if>
+      <if test="noFreeTimes != null">
+        no_free_times,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="payCount != null">
+        pay_count,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="readCount != null">
+        read_count,
+      </if>
+      <if test="adUrl1 != null">
+        ad_url1,
+      </if>
+      <if test="adUrl2 != null">
+        ad_url2,
+      </if>
+      <if test="adUrl3 != null">
+        ad_url3,
+      </if>
+      <if test="adUrl4 != null">
+        ad_url4,
+      </if>
+      <if test="adUrl5 != null">
+        ad_url5,
+      </if>
+      <if test="ruleUrl != null">
+        rule_url,
+      </if>
+      <if test="guessGroup != null">
+        guess_group,
+      </if>
+      <if test="voteId != null">
+        vote_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="showTitle != null">
+        show_title,
+      </if>
+      <if test="showDesc != null">
+        show_desc,
+      </if>
+      <if test="showImg != null">
+        show_img,
+      </if>
+      <if test="showUrl != null">
+        show_url,
+      </if>
+      <if test="toShopOnclickCount != null">
+        to_shop_onclick_count,
+      </if>
+      <if test="initApplyCount != null">
+        init_apply_count,
+      </if>
+      <if test="other1 != null">
+        other1,
+      </if>
+      <if test="other2 != null">
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDesc != null">
+        #{gameDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleSecond != null">
+        #{titleSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCount != null">
+        #{applyCount,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null">
+        #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="freeTimes != null">
+        #{freeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="noFreeTimes != null">
+        #{noFreeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null">
+        #{payCount,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="readCount != null">
+        #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="adUrl1 != null">
+        #{adUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl2 != null">
+        #{adUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl3 != null">
+        #{adUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl4 != null">
+        #{adUrl4,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl5 != null">
+        #{adUrl5,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleUrl != null">
+        #{ruleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="guessGroup != null">
+        #{guessGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="voteId != null">
+        #{voteId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=VARCHAR},
+      </if>
+      <if test="showTitle != null">
+        #{showTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="showDesc != null">
+        #{showDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg != null">
+        #{showImg,jdbcType=VARCHAR},
+      </if>
+      <if test="showUrl != null">
+        #{showUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toShopOnclickCount != null">
+        #{toShopOnclickCount,jdbcType=INTEGER},
+      </if>
+      <if test="initApplyCount != null">
+        #{initApplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDoExample" resultType="java.lang.Long">
+    select count(*) from common_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_game_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gameName != null">
+        game_name = #{record.gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameDesc != null">
+        game_desc = #{record.gameDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null">
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.startDate != null">
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null">
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleSecond != null">
+        title_second = #{record.titleSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyCount != null">
+        apply_count = #{record.applyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.section != null">
+        `section` = #{record.section,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freeTimes != null">
+        free_times = #{record.freeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.noFreeTimes != null">
+        no_free_times = #{record.noFreeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCount != null">
+        pay_count = #{record.payCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShow != null">
+        is_show = #{record.isShow,jdbcType=CHAR},
+      </if>
+      <if test="record.readCount != null">
+        read_count = #{record.readCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.adUrl1 != null">
+        ad_url1 = #{record.adUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adUrl2 != null">
+        ad_url2 = #{record.adUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adUrl3 != null">
+        ad_url3 = #{record.adUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adUrl4 != null">
+        ad_url4 = #{record.adUrl4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adUrl5 != null">
+        ad_url5 = #{record.adUrl5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleUrl != null">
+        rule_url = #{record.ruleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guessGroup != null">
+        guess_group = #{record.guessGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteId != null">
+        vote_id = #{record.voteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.contentId != null">
+        content_id = #{record.contentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showTitle != null">
+        show_title = #{record.showTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showDesc != null">
+        show_desc = #{record.showDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showImg != null">
+        show_img = #{record.showImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showUrl != null">
+        show_url = #{record.showUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toShopOnclickCount != null">
+        to_shop_onclick_count = #{record.toShopOnclickCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.initApplyCount != null">
+        init_apply_count = #{record.initApplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null">
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null">
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_game_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      game_name = #{record.gameName,jdbcType=VARCHAR},
+      game_desc = #{record.gameDesc,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR},
+      title_second = #{record.titleSecond,jdbcType=VARCHAR},
+      apply_count = #{record.applyCount,jdbcType=INTEGER},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=VARCHAR},
+      `section` = #{record.section,jdbcType=VARCHAR},
+      free_times = #{record.freeTimes,jdbcType=INTEGER},
+      no_free_times = #{record.noFreeTimes,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=VARCHAR},
+      pay_count = #{record.payCount,jdbcType=INTEGER},
+      is_show = #{record.isShow,jdbcType=CHAR},
+      read_count = #{record.readCount,jdbcType=INTEGER},
+      ad_url1 = #{record.adUrl1,jdbcType=VARCHAR},
+      ad_url2 = #{record.adUrl2,jdbcType=VARCHAR},
+      ad_url3 = #{record.adUrl3,jdbcType=VARCHAR},
+      ad_url4 = #{record.adUrl4,jdbcType=VARCHAR},
+      ad_url5 = #{record.adUrl5,jdbcType=VARCHAR},
+      rule_url = #{record.ruleUrl,jdbcType=VARCHAR},
+      guess_group = #{record.guessGroup,jdbcType=VARCHAR},
+      vote_id = #{record.voteId,jdbcType=BIGINT},
+      content_id = #{record.contentId,jdbcType=VARCHAR},
+      show_title = #{record.showTitle,jdbcType=VARCHAR},
+      show_desc = #{record.showDesc,jdbcType=VARCHAR},
+      show_img = #{record.showImg,jdbcType=VARCHAR},
+      show_url = #{record.showUrl,jdbcType=VARCHAR},
+      to_shop_onclick_count = #{record.toShopOnclickCount,jdbcType=INTEGER},
+      init_apply_count = #{record.initApplyCount,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDo">
+    update common_game_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDesc != null">
+        game_desc = #{gameDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleSecond != null">
+        title_second = #{titleSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCount != null">
+        apply_count = #{applyCount,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null">
+        `section` = #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="freeTimes != null">
+        free_times = #{freeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="noFreeTimes != null">
+        no_free_times = #{noFreeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payCount != null">
+        pay_count = #{payCount,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=CHAR},
+      </if>
+      <if test="readCount != null">
+        read_count = #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="adUrl1 != null">
+        ad_url1 = #{adUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl2 != null">
+        ad_url2 = #{adUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl3 != null">
+        ad_url3 = #{adUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl4 != null">
+        ad_url4 = #{adUrl4,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl5 != null">
+        ad_url5 = #{adUrl5,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleUrl != null">
+        rule_url = #{ruleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="guessGroup != null">
+        guess_group = #{guessGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="voteId != null">
+        vote_id = #{voteId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=VARCHAR},
+      </if>
+      <if test="showTitle != null">
+        show_title = #{showTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="showDesc != null">
+        show_desc = #{showDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg != null">
+        show_img = #{showImg,jdbcType=VARCHAR},
+      </if>
+      <if test="showUrl != null">
+        show_url = #{showUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toShopOnclickCount != null">
+        to_shop_onclick_count = #{toShopOnclickCount,jdbcType=INTEGER},
+      </if>
+      <if test="initApplyCount != null">
+        init_apply_count = #{initApplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null">
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.common.bean.CommonGameInfoDo">
+    update common_game_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      game_desc = #{gameDesc,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      title_second = #{titleSecond,jdbcType=VARCHAR},
+      apply_count = #{applyCount,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      `section` = #{section,jdbcType=VARCHAR},
+      free_times = #{freeTimes,jdbcType=INTEGER},
+      no_free_times = #{noFreeTimes,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      pay_count = #{payCount,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=CHAR},
+      read_count = #{readCount,jdbcType=INTEGER},
+      ad_url1 = #{adUrl1,jdbcType=VARCHAR},
+      ad_url2 = #{adUrl2,jdbcType=VARCHAR},
+      ad_url3 = #{adUrl3,jdbcType=VARCHAR},
+      ad_url4 = #{adUrl4,jdbcType=VARCHAR},
+      ad_url5 = #{adUrl5,jdbcType=VARCHAR},
+      rule_url = #{ruleUrl,jdbcType=VARCHAR},
+      guess_group = #{guessGroup,jdbcType=VARCHAR},
+      vote_id = #{voteId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=VARCHAR},
+      show_title = #{showTitle,jdbcType=VARCHAR},
+      show_desc = #{showDesc,jdbcType=VARCHAR},
+      show_img = #{showImg,jdbcType=VARCHAR},
+      show_url = #{showUrl,jdbcType=VARCHAR},
+      to_shop_onclick_count = #{toShopOnclickCount,jdbcType=INTEGER},
+      init_apply_count = #{initApplyCount,jdbcType=INTEGER},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

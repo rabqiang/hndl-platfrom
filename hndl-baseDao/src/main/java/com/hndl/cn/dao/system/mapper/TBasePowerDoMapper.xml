@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TBasePowerDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TBasePowerDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="powerid" jdbcType="VARCHAR" property="powerid" />
+    <result column="powername" jdbcType="VARCHAR" property="powername" />
+    <result column="fatherid" jdbcType="VARCHAR" property="fatherid" />
+    <result column="powerurl" jdbcType="VARCHAR" property="powerurl" />
+    <result column="powertype" jdbcType="CHAR" property="powertype" />
+    <result column="sequences" jdbcType="INTEGER" property="sequences" />
+    <result column="extviewurl" jdbcType="VARCHAR" property="extviewurl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, powerid, powername, fatherid, powerurl, powertype, sequences, extviewurl
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_power
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_power
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_base_power
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDoExample">
+    delete from t_base_power
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDo">
+    insert into t_base_power (id, powerid, powername, 
+      fatherid, powerurl, powertype, 
+      sequences, extviewurl)
+    values (#{id,jdbcType=INTEGER}, #{powerid,jdbcType=VARCHAR}, #{powername,jdbcType=VARCHAR}, 
+      #{fatherid,jdbcType=VARCHAR}, #{powerurl,jdbcType=VARCHAR}, #{powertype,jdbcType=CHAR}, 
+      #{sequences,jdbcType=INTEGER}, #{extviewurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDo">
+    insert into t_base_power
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="powerid != null">
+        powerid,
+      </if>
+      <if test="powername != null">
+        powername,
+      </if>
+      <if test="fatherid != null">
+        fatherid,
+      </if>
+      <if test="powerurl != null">
+        powerurl,
+      </if>
+      <if test="powertype != null">
+        powertype,
+      </if>
+      <if test="sequences != null">
+        sequences,
+      </if>
+      <if test="extviewurl != null">
+        extviewurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="powerid != null">
+        #{powerid,jdbcType=VARCHAR},
+      </if>
+      <if test="powername != null">
+        #{powername,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherid != null">
+        #{fatherid,jdbcType=VARCHAR},
+      </if>
+      <if test="powerurl != null">
+        #{powerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="powertype != null">
+        #{powertype,jdbcType=CHAR},
+      </if>
+      <if test="sequences != null">
+        #{sequences,jdbcType=INTEGER},
+      </if>
+      <if test="extviewurl != null">
+        #{extviewurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDoExample" resultType="java.lang.Long">
+    select count(*) from t_base_power
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_base_power
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.powerid != null">
+        powerid = #{record.powerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powername != null">
+        powername = #{record.powername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherid != null">
+        fatherid = #{record.fatherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerurl != null">
+        powerurl = #{record.powerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powertype != null">
+        powertype = #{record.powertype,jdbcType=CHAR},
+      </if>
+      <if test="record.sequences != null">
+        sequences = #{record.sequences,jdbcType=INTEGER},
+      </if>
+      <if test="record.extviewurl != null">
+        extviewurl = #{record.extviewurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_base_power
+    set id = #{record.id,jdbcType=INTEGER},
+      powerid = #{record.powerid,jdbcType=VARCHAR},
+      powername = #{record.powername,jdbcType=VARCHAR},
+      fatherid = #{record.fatherid,jdbcType=VARCHAR},
+      powerurl = #{record.powerurl,jdbcType=VARCHAR},
+      powertype = #{record.powertype,jdbcType=CHAR},
+      sequences = #{record.sequences,jdbcType=INTEGER},
+      extviewurl = #{record.extviewurl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDo">
+    update t_base_power
+    <set>
+      <if test="powerid != null">
+        powerid = #{powerid,jdbcType=VARCHAR},
+      </if>
+      <if test="powername != null">
+        powername = #{powername,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherid != null">
+        fatherid = #{fatherid,jdbcType=VARCHAR},
+      </if>
+      <if test="powerurl != null">
+        powerurl = #{powerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="powertype != null">
+        powertype = #{powertype,jdbcType=CHAR},
+      </if>
+      <if test="sequences != null">
+        sequences = #{sequences,jdbcType=INTEGER},
+      </if>
+      <if test="extviewurl != null">
+        extviewurl = #{extviewurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TBasePowerDo">
+    update t_base_power
+    set powerid = #{powerid,jdbcType=VARCHAR},
+      powername = #{powername,jdbcType=VARCHAR},
+      fatherid = #{fatherid,jdbcType=VARCHAR},
+      powerurl = #{powerurl,jdbcType=VARCHAR},
+      powertype = #{powertype,jdbcType=CHAR},
+      sequences = #{sequences,jdbcType=INTEGER},
+      extviewurl = #{extviewurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

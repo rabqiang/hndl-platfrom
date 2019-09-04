@@ -1,0 +1,1400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.common.mapper.CommonUserInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.common.bean.CommonUserInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="net_type" jdbcType="VARCHAR" property="netType" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="phone_num_person" jdbcType="BIGINT" property="phoneNumPerson" />
+    <result column="dynamic_password" jdbcType="VARCHAR" property="dynamicPassword" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="confirm_number_login" jdbcType="VARCHAR" property="confirmNumberLogin" />
+    <result column="confirm_number_forget" jdbcType="VARCHAR" property="confirmNumberForget" />
+    <result column="is_vip" jdbcType="CHAR" property="isVip" />
+    <result column="vip_type" jdbcType="VARCHAR" property="vipType" />
+    <result column="vip_start_date" jdbcType="DATE" property="vipStartDate" />
+    <result column="vip_end_date" jdbcType="DATE" property="vipEndDate" />
+    <result column="is_first_game_win" jdbcType="CHAR" property="isFirstGameWin" />
+    <result column="ims_sign_total_day" jdbcType="INTEGER" property="imsSignTotalDay" />
+    <result column="ims_sign_continue_day" jdbcType="INTEGER" property="imsSignContinueDay" />
+    <result column="is_give_prize" jdbcType="CHAR" property="isGivePrize" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="prize_give_phone" jdbcType="VARCHAR" property="prizeGivePhone" />
+    <result column="person_img_url_max" jdbcType="VARCHAR" property="personImgUrlMax" />
+    <result column="person_img_url_min" jdbcType="VARCHAR" property="personImgUrlMin" />
+    <result column="doudou_count" jdbcType="INTEGER" property="doudouCount" />
+    <result column="coni_count" jdbcType="DOUBLE" property="coniCount" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="weixin_open_id" jdbcType="VARCHAR" property="weixinOpenId" />
+    <result column="weixin_uni_id" jdbcType="VARCHAR" property="weixinUniId" />
+    <result column="device_number" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="qq_open_id" jdbcType="VARCHAR" property="qqOpenId" />
+    <result column="is_robot" jdbcType="CHAR" property="isRobot" />
+    <result column="robot_order_ip" jdbcType="VARCHAR" property="robotOrderIp" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="phone_name" jdbcType="VARCHAR" property="phoneName" />
+    <result column="is_task_phone" jdbcType="CHAR" property="isTaskPhone" />
+    <result column="is_task_address" jdbcType="CHAR" property="isTaskAddress" />
+    <result column="task_all_doudou" jdbcType="INTEGER" property="taskAllDoudou" />
+    <result column="umeng_channel" jdbcType="VARCHAR" property="umengChannel" />
+    <result column="sms_send_count" jdbcType="INTEGER" property="smsSendCount" />
+    <result column="sms_send_last_time" jdbcType="TIMESTAMP" property="smsSendLastTime" />
+    <result column="contribution_value" jdbcType="INTEGER" property="contributionValue" />
+    <result column="contribution_level" jdbcType="INTEGER" property="contributionLevel" />
+    <result column="last_user_id" jdbcType="VARCHAR" property="lastUserId" />
+    <result column="request_code" jdbcType="VARCHAR" property="requestCode" />
+    <result column="show_add_send_sms_everyday" jdbcType="INTEGER" property="showAddSendSmsEveryday" />
+    <result column="show_add_send_jpush_everyday" jdbcType="INTEGER" property="showAddSendJpushEveryday" />
+    <result column="show_add_send_sms_date" jdbcType="DATE" property="showAddSendSmsDate" />
+    <result column="show_add_send_jpush_date" jdbcType="DATE" property="showAddSendJpushDate" />
+    <result column="lucky_count" jdbcType="INTEGER" property="luckyCount" />
+    <result column="phone_number_activity" jdbcType="BIGINT" property="phoneNumberActivity" />
+    <result column="lucky_shop_count" jdbcType="INTEGER" property="luckyShopCount" />
+    <result column="weibo_open_id" jdbcType="VARCHAR" property="weiboOpenId" />
+    <result column="star_img_one" jdbcType="VARCHAR" property="starImgOne" />
+    <result column="star_img_two" jdbcType="VARCHAR" property="starImgTwo" />
+    <result column="star_img_three" jdbcType="VARCHAR" property="starImgThree" />
+    <result column="star_id_one" jdbcType="BIGINT" property="starIdOne" />
+    <result column="star_id_two" jdbcType="BIGINT" property="starIdTwo" />
+    <result column="star_id_three" jdbcType="BIGINT" property="starIdThree" />
+    <result column="vote_count_one" jdbcType="INTEGER" property="voteCountOne" />
+    <result column="vote_count_two" jdbcType="INTEGER" property="voteCountTwo" />
+    <result column="vote_count_three" jdbcType="INTEGER" property="voteCountThree" />
+    <result column="star_desc_one" jdbcType="VARCHAR" property="starDescOne" />
+    <result column="star_desc_two" jdbcType="VARCHAR" property="starDescTwo" />
+    <result column="star_desc_three" jdbcType="VARCHAR" property="starDescThree" />
+    <result column="star_sex_one" jdbcType="VARCHAR" property="starSexOne" />
+    <result column="star_sex_two" jdbcType="VARCHAR" property="starSexTwo" />
+    <result column="star_sex_three" jdbcType="VARCHAR" property="starSexThree" />
+    <result column="star_level_one" jdbcType="INTEGER" property="starLevelOne" />
+    <result column="personal_homepage_img" jdbcType="VARCHAR" property="personalHomepageImg" />
+    <result column="personal_autograph" jdbcType="VARCHAR" property="personalAutograph" />
+    <result column="heart_count" jdbcType="BIGINT" property="heartCount" />
+    <result column="heart_count_today" jdbcType="INTEGER" property="heartCountToday" />
+    <result column="heart_donate_count" jdbcType="BIGINT" property="heartDonateCount" />
+    <result column="money_donate_count" jdbcType="DOUBLE" property="moneyDonateCount" />
+    <result column="xcx_open_id" jdbcType="VARCHAR" property="xcxOpenId" />
+    <result column="sys_uni_id" jdbcType="BIGINT" property="sysUniId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, net_type, 
+    phone_num, phone_num_person, dynamic_password, `password`, confirm_number_login, 
+    confirm_number_forget, is_vip, vip_type, vip_start_date, vip_end_date, is_first_game_win, 
+    ims_sign_total_day, ims_sign_continue_day, is_give_prize, person_name, prize_give_phone, 
+    person_img_url_max, person_img_url_min, doudou_count, coni_count, nick_name, weixin_open_id, 
+    weixin_uni_id, device_number, qq_open_id, is_robot, robot_order_ip, app_type, phone_name, 
+    is_task_phone, is_task_address, task_all_doudou, umeng_channel, sms_send_count, sms_send_last_time, 
+    contribution_value, contribution_level, last_user_id, request_code, show_add_send_sms_everyday, 
+    show_add_send_jpush_everyday, show_add_send_sms_date, show_add_send_jpush_date, lucky_count, 
+    phone_number_activity, lucky_shop_count, weibo_open_id, star_img_one, star_img_two, 
+    star_img_three, star_id_one, star_id_two, star_id_three, vote_count_one, vote_count_two, 
+    vote_count_three, star_desc_one, star_desc_two, star_desc_three, star_sex_one, star_sex_two, 
+    star_sex_three, star_level_one, personal_homepage_img, personal_autograph, heart_count, 
+    heart_count_today, heart_donate_count, money_donate_count, xcx_open_id, sys_uni_id
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDoExample">
+    delete from common_user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDo">
+    insert into common_user_info (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      net_type, phone_num, phone_num_person, 
+      dynamic_password, `password`, confirm_number_login, 
+      confirm_number_forget, is_vip, vip_type, 
+      vip_start_date, vip_end_date, is_first_game_win, 
+      ims_sign_total_day, ims_sign_continue_day, is_give_prize, 
+      person_name, prize_give_phone, person_img_url_max, 
+      person_img_url_min, doudou_count, coni_count, 
+      nick_name, weixin_open_id, weixin_uni_id, 
+      device_number, qq_open_id, is_robot, 
+      robot_order_ip, app_type, phone_name, 
+      is_task_phone, is_task_address, task_all_doudou, 
+      umeng_channel, sms_send_count, sms_send_last_time, 
+      contribution_value, contribution_level, last_user_id, 
+      request_code, show_add_send_sms_everyday, show_add_send_jpush_everyday, 
+      show_add_send_sms_date, show_add_send_jpush_date, lucky_count, 
+      phone_number_activity, lucky_shop_count, weibo_open_id, 
+      star_img_one, star_img_two, star_img_three, 
+      star_id_one, star_id_two, star_id_three, 
+      vote_count_one, vote_count_two, vote_count_three, 
+      star_desc_one, star_desc_two, star_desc_three, 
+      star_sex_one, star_sex_two, star_sex_three, 
+      star_level_one, personal_homepage_img, personal_autograph, 
+      heart_count, heart_count_today, heart_donate_count, 
+      money_donate_count, xcx_open_id, sys_uni_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{netType,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{phoneNumPerson,jdbcType=BIGINT}, 
+      #{dynamicPassword,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{confirmNumberLogin,jdbcType=VARCHAR}, 
+      #{confirmNumberForget,jdbcType=VARCHAR}, #{isVip,jdbcType=CHAR}, #{vipType,jdbcType=VARCHAR}, 
+      #{vipStartDate,jdbcType=DATE}, #{vipEndDate,jdbcType=DATE}, #{isFirstGameWin,jdbcType=CHAR}, 
+      #{imsSignTotalDay,jdbcType=INTEGER}, #{imsSignContinueDay,jdbcType=INTEGER}, #{isGivePrize,jdbcType=CHAR}, 
+      #{personName,jdbcType=VARCHAR}, #{prizeGivePhone,jdbcType=VARCHAR}, #{personImgUrlMax,jdbcType=VARCHAR}, 
+      #{personImgUrlMin,jdbcType=VARCHAR}, #{doudouCount,jdbcType=INTEGER}, #{coniCount,jdbcType=DOUBLE}, 
+      #{nickName,jdbcType=VARCHAR}, #{weixinOpenId,jdbcType=VARCHAR}, #{weixinUniId,jdbcType=VARCHAR}, 
+      #{deviceNumber,jdbcType=VARCHAR}, #{qqOpenId,jdbcType=VARCHAR}, #{isRobot,jdbcType=CHAR}, 
+      #{robotOrderIp,jdbcType=VARCHAR}, #{appType,jdbcType=VARCHAR}, #{phoneName,jdbcType=VARCHAR}, 
+      #{isTaskPhone,jdbcType=CHAR}, #{isTaskAddress,jdbcType=CHAR}, #{taskAllDoudou,jdbcType=INTEGER}, 
+      #{umengChannel,jdbcType=VARCHAR}, #{smsSendCount,jdbcType=INTEGER}, #{smsSendLastTime,jdbcType=TIMESTAMP}, 
+      #{contributionValue,jdbcType=INTEGER}, #{contributionLevel,jdbcType=INTEGER}, #{lastUserId,jdbcType=VARCHAR}, 
+      #{requestCode,jdbcType=VARCHAR}, #{showAddSendSmsEveryday,jdbcType=INTEGER}, #{showAddSendJpushEveryday,jdbcType=INTEGER}, 
+      #{showAddSendSmsDate,jdbcType=DATE}, #{showAddSendJpushDate,jdbcType=DATE}, #{luckyCount,jdbcType=INTEGER}, 
+      #{phoneNumberActivity,jdbcType=BIGINT}, #{luckyShopCount,jdbcType=INTEGER}, #{weiboOpenId,jdbcType=VARCHAR}, 
+      #{starImgOne,jdbcType=VARCHAR}, #{starImgTwo,jdbcType=VARCHAR}, #{starImgThree,jdbcType=VARCHAR}, 
+      #{starIdOne,jdbcType=BIGINT}, #{starIdTwo,jdbcType=BIGINT}, #{starIdThree,jdbcType=BIGINT}, 
+      #{voteCountOne,jdbcType=INTEGER}, #{voteCountTwo,jdbcType=INTEGER}, #{voteCountThree,jdbcType=INTEGER}, 
+      #{starDescOne,jdbcType=VARCHAR}, #{starDescTwo,jdbcType=VARCHAR}, #{starDescThree,jdbcType=VARCHAR}, 
+      #{starSexOne,jdbcType=VARCHAR}, #{starSexTwo,jdbcType=VARCHAR}, #{starSexThree,jdbcType=VARCHAR}, 
+      #{starLevelOne,jdbcType=INTEGER}, #{personalHomepageImg,jdbcType=VARCHAR}, #{personalAutograph,jdbcType=VARCHAR}, 
+      #{heartCount,jdbcType=BIGINT}, #{heartCountToday,jdbcType=INTEGER}, #{heartDonateCount,jdbcType=BIGINT}, 
+      #{moneyDonateCount,jdbcType=DOUBLE}, #{xcxOpenId,jdbcType=VARCHAR}, #{sysUniId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDo">
+    insert into common_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="netType != null">
+        net_type,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="phoneNumPerson != null">
+        phone_num_person,
+      </if>
+      <if test="dynamicPassword != null">
+        dynamic_password,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="confirmNumberLogin != null">
+        confirm_number_login,
+      </if>
+      <if test="confirmNumberForget != null">
+        confirm_number_forget,
+      </if>
+      <if test="isVip != null">
+        is_vip,
+      </if>
+      <if test="vipType != null">
+        vip_type,
+      </if>
+      <if test="vipStartDate != null">
+        vip_start_date,
+      </if>
+      <if test="vipEndDate != null">
+        vip_end_date,
+      </if>
+      <if test="isFirstGameWin != null">
+        is_first_game_win,
+      </if>
+      <if test="imsSignTotalDay != null">
+        ims_sign_total_day,
+      </if>
+      <if test="imsSignContinueDay != null">
+        ims_sign_continue_day,
+      </if>
+      <if test="isGivePrize != null">
+        is_give_prize,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="prizeGivePhone != null">
+        prize_give_phone,
+      </if>
+      <if test="personImgUrlMax != null">
+        person_img_url_max,
+      </if>
+      <if test="personImgUrlMin != null">
+        person_img_url_min,
+      </if>
+      <if test="doudouCount != null">
+        doudou_count,
+      </if>
+      <if test="coniCount != null">
+        coni_count,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="weixinOpenId != null">
+        weixin_open_id,
+      </if>
+      <if test="weixinUniId != null">
+        weixin_uni_id,
+      </if>
+      <if test="deviceNumber != null">
+        device_number,
+      </if>
+      <if test="qqOpenId != null">
+        qq_open_id,
+      </if>
+      <if test="isRobot != null">
+        is_robot,
+      </if>
+      <if test="robotOrderIp != null">
+        robot_order_ip,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="phoneName != null">
+        phone_name,
+      </if>
+      <if test="isTaskPhone != null">
+        is_task_phone,
+      </if>
+      <if test="isTaskAddress != null">
+        is_task_address,
+      </if>
+      <if test="taskAllDoudou != null">
+        task_all_doudou,
+      </if>
+      <if test="umengChannel != null">
+        umeng_channel,
+      </if>
+      <if test="smsSendCount != null">
+        sms_send_count,
+      </if>
+      <if test="smsSendLastTime != null">
+        sms_send_last_time,
+      </if>
+      <if test="contributionValue != null">
+        contribution_value,
+      </if>
+      <if test="contributionLevel != null">
+        contribution_level,
+      </if>
+      <if test="lastUserId != null">
+        last_user_id,
+      </if>
+      <if test="requestCode != null">
+        request_code,
+      </if>
+      <if test="showAddSendSmsEveryday != null">
+        show_add_send_sms_everyday,
+      </if>
+      <if test="showAddSendJpushEveryday != null">
+        show_add_send_jpush_everyday,
+      </if>
+      <if test="showAddSendSmsDate != null">
+        show_add_send_sms_date,
+      </if>
+      <if test="showAddSendJpushDate != null">
+        show_add_send_jpush_date,
+      </if>
+      <if test="luckyCount != null">
+        lucky_count,
+      </if>
+      <if test="phoneNumberActivity != null">
+        phone_number_activity,
+      </if>
+      <if test="luckyShopCount != null">
+        lucky_shop_count,
+      </if>
+      <if test="weiboOpenId != null">
+        weibo_open_id,
+      </if>
+      <if test="starImgOne != null">
+        star_img_one,
+      </if>
+      <if test="starImgTwo != null">
+        star_img_two,
+      </if>
+      <if test="starImgThree != null">
+        star_img_three,
+      </if>
+      <if test="starIdOne != null">
+        star_id_one,
+      </if>
+      <if test="starIdTwo != null">
+        star_id_two,
+      </if>
+      <if test="starIdThree != null">
+        star_id_three,
+      </if>
+      <if test="voteCountOne != null">
+        vote_count_one,
+      </if>
+      <if test="voteCountTwo != null">
+        vote_count_two,
+      </if>
+      <if test="voteCountThree != null">
+        vote_count_three,
+      </if>
+      <if test="starDescOne != null">
+        star_desc_one,
+      </if>
+      <if test="starDescTwo != null">
+        star_desc_two,
+      </if>
+      <if test="starDescThree != null">
+        star_desc_three,
+      </if>
+      <if test="starSexOne != null">
+        star_sex_one,
+      </if>
+      <if test="starSexTwo != null">
+        star_sex_two,
+      </if>
+      <if test="starSexThree != null">
+        star_sex_three,
+      </if>
+      <if test="starLevelOne != null">
+        star_level_one,
+      </if>
+      <if test="personalHomepageImg != null">
+        personal_homepage_img,
+      </if>
+      <if test="personalAutograph != null">
+        personal_autograph,
+      </if>
+      <if test="heartCount != null">
+        heart_count,
+      </if>
+      <if test="heartCountToday != null">
+        heart_count_today,
+      </if>
+      <if test="heartDonateCount != null">
+        heart_donate_count,
+      </if>
+      <if test="moneyDonateCount != null">
+        money_donate_count,
+      </if>
+      <if test="xcxOpenId != null">
+        xcx_open_id,
+      </if>
+      <if test="sysUniId != null">
+        sys_uni_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="netType != null">
+        #{netType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumPerson != null">
+        #{phoneNumPerson,jdbcType=BIGINT},
+      </if>
+      <if test="dynamicPassword != null">
+        #{dynamicPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmNumberLogin != null">
+        #{confirmNumberLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmNumberForget != null">
+        #{confirmNumberForget,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null">
+        #{isVip,jdbcType=CHAR},
+      </if>
+      <if test="vipType != null">
+        #{vipType,jdbcType=VARCHAR},
+      </if>
+      <if test="vipStartDate != null">
+        #{vipStartDate,jdbcType=DATE},
+      </if>
+      <if test="vipEndDate != null">
+        #{vipEndDate,jdbcType=DATE},
+      </if>
+      <if test="isFirstGameWin != null">
+        #{isFirstGameWin,jdbcType=CHAR},
+      </if>
+      <if test="imsSignTotalDay != null">
+        #{imsSignTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="imsSignContinueDay != null">
+        #{imsSignContinueDay,jdbcType=INTEGER},
+      </if>
+      <if test="isGivePrize != null">
+        #{isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeGivePhone != null">
+        #{prizeGivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personImgUrlMax != null">
+        #{personImgUrlMax,jdbcType=VARCHAR},
+      </if>
+      <if test="personImgUrlMin != null">
+        #{personImgUrlMin,jdbcType=VARCHAR},
+      </if>
+      <if test="doudouCount != null">
+        #{doudouCount,jdbcType=INTEGER},
+      </if>
+      <if test="coniCount != null">
+        #{coniCount,jdbcType=DOUBLE},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinOpenId != null">
+        #{weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinUniId != null">
+        #{weixinUniId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNumber != null">
+        #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="qqOpenId != null">
+        #{qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="isRobot != null">
+        #{isRobot,jdbcType=CHAR},
+      </if>
+      <if test="robotOrderIp != null">
+        #{robotOrderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneName != null">
+        #{phoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="isTaskPhone != null">
+        #{isTaskPhone,jdbcType=CHAR},
+      </if>
+      <if test="isTaskAddress != null">
+        #{isTaskAddress,jdbcType=CHAR},
+      </if>
+      <if test="taskAllDoudou != null">
+        #{taskAllDoudou,jdbcType=INTEGER},
+      </if>
+      <if test="umengChannel != null">
+        #{umengChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="smsSendCount != null">
+        #{smsSendCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsSendLastTime != null">
+        #{smsSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contributionValue != null">
+        #{contributionValue,jdbcType=INTEGER},
+      </if>
+      <if test="contributionLevel != null">
+        #{contributionLevel,jdbcType=INTEGER},
+      </if>
+      <if test="lastUserId != null">
+        #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestCode != null">
+        #{requestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="showAddSendSmsEveryday != null">
+        #{showAddSendSmsEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="showAddSendJpushEveryday != null">
+        #{showAddSendJpushEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="showAddSendSmsDate != null">
+        #{showAddSendSmsDate,jdbcType=DATE},
+      </if>
+      <if test="showAddSendJpushDate != null">
+        #{showAddSendJpushDate,jdbcType=DATE},
+      </if>
+      <if test="luckyCount != null">
+        #{luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumberActivity != null">
+        #{phoneNumberActivity,jdbcType=BIGINT},
+      </if>
+      <if test="luckyShopCount != null">
+        #{luckyShopCount,jdbcType=INTEGER},
+      </if>
+      <if test="weiboOpenId != null">
+        #{weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgOne != null">
+        #{starImgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgTwo != null">
+        #{starImgTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgThree != null">
+        #{starImgThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starIdOne != null">
+        #{starIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="starIdTwo != null">
+        #{starIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="starIdThree != null">
+        #{starIdThree,jdbcType=BIGINT},
+      </if>
+      <if test="voteCountOne != null">
+        #{voteCountOne,jdbcType=INTEGER},
+      </if>
+      <if test="voteCountTwo != null">
+        #{voteCountTwo,jdbcType=INTEGER},
+      </if>
+      <if test="voteCountThree != null">
+        #{voteCountThree,jdbcType=INTEGER},
+      </if>
+      <if test="starDescOne != null">
+        #{starDescOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starDescTwo != null">
+        #{starDescTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starDescThree != null">
+        #{starDescThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexOne != null">
+        #{starSexOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexTwo != null">
+        #{starSexTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexThree != null">
+        #{starSexThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelOne != null">
+        #{starLevelOne,jdbcType=INTEGER},
+      </if>
+      <if test="personalHomepageImg != null">
+        #{personalHomepageImg,jdbcType=VARCHAR},
+      </if>
+      <if test="personalAutograph != null">
+        #{personalAutograph,jdbcType=VARCHAR},
+      </if>
+      <if test="heartCount != null">
+        #{heartCount,jdbcType=BIGINT},
+      </if>
+      <if test="heartCountToday != null">
+        #{heartCountToday,jdbcType=INTEGER},
+      </if>
+      <if test="heartDonateCount != null">
+        #{heartDonateCount,jdbcType=BIGINT},
+      </if>
+      <if test="moneyDonateCount != null">
+        #{moneyDonateCount,jdbcType=DOUBLE},
+      </if>
+      <if test="xcxOpenId != null">
+        #{xcxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUniId != null">
+        #{sysUniId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDoExample" resultType="java.lang.Long">
+    select count(*) from common_user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_user_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.netType != null">
+        net_type = #{record.netType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNum != null">
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumPerson != null">
+        phone_num_person = #{record.phoneNumPerson,jdbcType=BIGINT},
+      </if>
+      <if test="record.dynamicPassword != null">
+        dynamic_password = #{record.dynamicPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmNumberLogin != null">
+        confirm_number_login = #{record.confirmNumberLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmNumberForget != null">
+        confirm_number_forget = #{record.confirmNumberForget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVip != null">
+        is_vip = #{record.isVip,jdbcType=CHAR},
+      </if>
+      <if test="record.vipType != null">
+        vip_type = #{record.vipType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipStartDate != null">
+        vip_start_date = #{record.vipStartDate,jdbcType=DATE},
+      </if>
+      <if test="record.vipEndDate != null">
+        vip_end_date = #{record.vipEndDate,jdbcType=DATE},
+      </if>
+      <if test="record.isFirstGameWin != null">
+        is_first_game_win = #{record.isFirstGameWin,jdbcType=CHAR},
+      </if>
+      <if test="record.imsSignTotalDay != null">
+        ims_sign_total_day = #{record.imsSignTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.imsSignContinueDay != null">
+        ims_sign_continue_day = #{record.imsSignContinueDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.isGivePrize != null">
+        is_give_prize = #{record.isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="record.personName != null">
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizeGivePhone != null">
+        prize_give_phone = #{record.prizeGivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personImgUrlMax != null">
+        person_img_url_max = #{record.personImgUrlMax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personImgUrlMin != null">
+        person_img_url_min = #{record.personImgUrlMin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doudouCount != null">
+        doudou_count = #{record.doudouCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.coniCount != null">
+        coni_count = #{record.coniCount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinOpenId != null">
+        weixin_open_id = #{record.weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinUniId != null">
+        weixin_uni_id = #{record.weixinUniId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceNumber != null">
+        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqOpenId != null">
+        qq_open_id = #{record.qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRobot != null">
+        is_robot = #{record.isRobot,jdbcType=CHAR},
+      </if>
+      <if test="record.robotOrderIp != null">
+        robot_order_ip = #{record.robotOrderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appType != null">
+        app_type = #{record.appType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneName != null">
+        phone_name = #{record.phoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTaskPhone != null">
+        is_task_phone = #{record.isTaskPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.isTaskAddress != null">
+        is_task_address = #{record.isTaskAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.taskAllDoudou != null">
+        task_all_doudou = #{record.taskAllDoudou,jdbcType=INTEGER},
+      </if>
+      <if test="record.umengChannel != null">
+        umeng_channel = #{record.umengChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsSendCount != null">
+        sms_send_count = #{record.smsSendCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsSendLastTime != null">
+        sms_send_last_time = #{record.smsSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contributionValue != null">
+        contribution_value = #{record.contributionValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.contributionLevel != null">
+        contribution_level = #{record.contributionLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUserId != null">
+        last_user_id = #{record.lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestCode != null">
+        request_code = #{record.requestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showAddSendSmsEveryday != null">
+        show_add_send_sms_everyday = #{record.showAddSendSmsEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="record.showAddSendJpushEveryday != null">
+        show_add_send_jpush_everyday = #{record.showAddSendJpushEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="record.showAddSendSmsDate != null">
+        show_add_send_sms_date = #{record.showAddSendSmsDate,jdbcType=DATE},
+      </if>
+      <if test="record.showAddSendJpushDate != null">
+        show_add_send_jpush_date = #{record.showAddSendJpushDate,jdbcType=DATE},
+      </if>
+      <if test="record.luckyCount != null">
+        lucky_count = #{record.luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.phoneNumberActivity != null">
+        phone_number_activity = #{record.phoneNumberActivity,jdbcType=BIGINT},
+      </if>
+      <if test="record.luckyShopCount != null">
+        lucky_shop_count = #{record.luckyShopCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.weiboOpenId != null">
+        weibo_open_id = #{record.weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starImgOne != null">
+        star_img_one = #{record.starImgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starImgTwo != null">
+        star_img_two = #{record.starImgTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starImgThree != null">
+        star_img_three = #{record.starImgThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starIdOne != null">
+        star_id_one = #{record.starIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="record.starIdTwo != null">
+        star_id_two = #{record.starIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="record.starIdThree != null">
+        star_id_three = #{record.starIdThree,jdbcType=BIGINT},
+      </if>
+      <if test="record.voteCountOne != null">
+        vote_count_one = #{record.voteCountOne,jdbcType=INTEGER},
+      </if>
+      <if test="record.voteCountTwo != null">
+        vote_count_two = #{record.voteCountTwo,jdbcType=INTEGER},
+      </if>
+      <if test="record.voteCountThree != null">
+        vote_count_three = #{record.voteCountThree,jdbcType=INTEGER},
+      </if>
+      <if test="record.starDescOne != null">
+        star_desc_one = #{record.starDescOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starDescTwo != null">
+        star_desc_two = #{record.starDescTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starDescThree != null">
+        star_desc_three = #{record.starDescThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starSexOne != null">
+        star_sex_one = #{record.starSexOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starSexTwo != null">
+        star_sex_two = #{record.starSexTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starSexThree != null">
+        star_sex_three = #{record.starSexThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starLevelOne != null">
+        star_level_one = #{record.starLevelOne,jdbcType=INTEGER},
+      </if>
+      <if test="record.personalHomepageImg != null">
+        personal_homepage_img = #{record.personalHomepageImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personalAutograph != null">
+        personal_autograph = #{record.personalAutograph,jdbcType=VARCHAR},
+      </if>
+      <if test="record.heartCount != null">
+        heart_count = #{record.heartCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.heartCountToday != null">
+        heart_count_today = #{record.heartCountToday,jdbcType=INTEGER},
+      </if>
+      <if test="record.heartDonateCount != null">
+        heart_donate_count = #{record.heartDonateCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.moneyDonateCount != null">
+        money_donate_count = #{record.moneyDonateCount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.xcxOpenId != null">
+        xcx_open_id = #{record.xcxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysUniId != null">
+        sys_uni_id = #{record.sysUniId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_user_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      net_type = #{record.netType,jdbcType=VARCHAR},
+      phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      phone_num_person = #{record.phoneNumPerson,jdbcType=BIGINT},
+      dynamic_password = #{record.dynamicPassword,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      confirm_number_login = #{record.confirmNumberLogin,jdbcType=VARCHAR},
+      confirm_number_forget = #{record.confirmNumberForget,jdbcType=VARCHAR},
+      is_vip = #{record.isVip,jdbcType=CHAR},
+      vip_type = #{record.vipType,jdbcType=VARCHAR},
+      vip_start_date = #{record.vipStartDate,jdbcType=DATE},
+      vip_end_date = #{record.vipEndDate,jdbcType=DATE},
+      is_first_game_win = #{record.isFirstGameWin,jdbcType=CHAR},
+      ims_sign_total_day = #{record.imsSignTotalDay,jdbcType=INTEGER},
+      ims_sign_continue_day = #{record.imsSignContinueDay,jdbcType=INTEGER},
+      is_give_prize = #{record.isGivePrize,jdbcType=CHAR},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      prize_give_phone = #{record.prizeGivePhone,jdbcType=VARCHAR},
+      person_img_url_max = #{record.personImgUrlMax,jdbcType=VARCHAR},
+      person_img_url_min = #{record.personImgUrlMin,jdbcType=VARCHAR},
+      doudou_count = #{record.doudouCount,jdbcType=INTEGER},
+      coni_count = #{record.coniCount,jdbcType=DOUBLE},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      weixin_open_id = #{record.weixinOpenId,jdbcType=VARCHAR},
+      weixin_uni_id = #{record.weixinUniId,jdbcType=VARCHAR},
+      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      qq_open_id = #{record.qqOpenId,jdbcType=VARCHAR},
+      is_robot = #{record.isRobot,jdbcType=CHAR},
+      robot_order_ip = #{record.robotOrderIp,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=VARCHAR},
+      phone_name = #{record.phoneName,jdbcType=VARCHAR},
+      is_task_phone = #{record.isTaskPhone,jdbcType=CHAR},
+      is_task_address = #{record.isTaskAddress,jdbcType=CHAR},
+      task_all_doudou = #{record.taskAllDoudou,jdbcType=INTEGER},
+      umeng_channel = #{record.umengChannel,jdbcType=VARCHAR},
+      sms_send_count = #{record.smsSendCount,jdbcType=INTEGER},
+      sms_send_last_time = #{record.smsSendLastTime,jdbcType=TIMESTAMP},
+      contribution_value = #{record.contributionValue,jdbcType=INTEGER},
+      contribution_level = #{record.contributionLevel,jdbcType=INTEGER},
+      last_user_id = #{record.lastUserId,jdbcType=VARCHAR},
+      request_code = #{record.requestCode,jdbcType=VARCHAR},
+      show_add_send_sms_everyday = #{record.showAddSendSmsEveryday,jdbcType=INTEGER},
+      show_add_send_jpush_everyday = #{record.showAddSendJpushEveryday,jdbcType=INTEGER},
+      show_add_send_sms_date = #{record.showAddSendSmsDate,jdbcType=DATE},
+      show_add_send_jpush_date = #{record.showAddSendJpushDate,jdbcType=DATE},
+      lucky_count = #{record.luckyCount,jdbcType=INTEGER},
+      phone_number_activity = #{record.phoneNumberActivity,jdbcType=BIGINT},
+      lucky_shop_count = #{record.luckyShopCount,jdbcType=INTEGER},
+      weibo_open_id = #{record.weiboOpenId,jdbcType=VARCHAR},
+      star_img_one = #{record.starImgOne,jdbcType=VARCHAR},
+      star_img_two = #{record.starImgTwo,jdbcType=VARCHAR},
+      star_img_three = #{record.starImgThree,jdbcType=VARCHAR},
+      star_id_one = #{record.starIdOne,jdbcType=BIGINT},
+      star_id_two = #{record.starIdTwo,jdbcType=BIGINT},
+      star_id_three = #{record.starIdThree,jdbcType=BIGINT},
+      vote_count_one = #{record.voteCountOne,jdbcType=INTEGER},
+      vote_count_two = #{record.voteCountTwo,jdbcType=INTEGER},
+      vote_count_three = #{record.voteCountThree,jdbcType=INTEGER},
+      star_desc_one = #{record.starDescOne,jdbcType=VARCHAR},
+      star_desc_two = #{record.starDescTwo,jdbcType=VARCHAR},
+      star_desc_three = #{record.starDescThree,jdbcType=VARCHAR},
+      star_sex_one = #{record.starSexOne,jdbcType=VARCHAR},
+      star_sex_two = #{record.starSexTwo,jdbcType=VARCHAR},
+      star_sex_three = #{record.starSexThree,jdbcType=VARCHAR},
+      star_level_one = #{record.starLevelOne,jdbcType=INTEGER},
+      personal_homepage_img = #{record.personalHomepageImg,jdbcType=VARCHAR},
+      personal_autograph = #{record.personalAutograph,jdbcType=VARCHAR},
+      heart_count = #{record.heartCount,jdbcType=BIGINT},
+      heart_count_today = #{record.heartCountToday,jdbcType=INTEGER},
+      heart_donate_count = #{record.heartDonateCount,jdbcType=BIGINT},
+      money_donate_count = #{record.moneyDonateCount,jdbcType=DOUBLE},
+      xcx_open_id = #{record.xcxOpenId,jdbcType=VARCHAR},
+      sys_uni_id = #{record.sysUniId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDo">
+    update common_user_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="netType != null">
+        net_type = #{netType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumPerson != null">
+        phone_num_person = #{phoneNumPerson,jdbcType=BIGINT},
+      </if>
+      <if test="dynamicPassword != null">
+        dynamic_password = #{dynamicPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmNumberLogin != null">
+        confirm_number_login = #{confirmNumberLogin,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmNumberForget != null">
+        confirm_number_forget = #{confirmNumberForget,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null">
+        is_vip = #{isVip,jdbcType=CHAR},
+      </if>
+      <if test="vipType != null">
+        vip_type = #{vipType,jdbcType=VARCHAR},
+      </if>
+      <if test="vipStartDate != null">
+        vip_start_date = #{vipStartDate,jdbcType=DATE},
+      </if>
+      <if test="vipEndDate != null">
+        vip_end_date = #{vipEndDate,jdbcType=DATE},
+      </if>
+      <if test="isFirstGameWin != null">
+        is_first_game_win = #{isFirstGameWin,jdbcType=CHAR},
+      </if>
+      <if test="imsSignTotalDay != null">
+        ims_sign_total_day = #{imsSignTotalDay,jdbcType=INTEGER},
+      </if>
+      <if test="imsSignContinueDay != null">
+        ims_sign_continue_day = #{imsSignContinueDay,jdbcType=INTEGER},
+      </if>
+      <if test="isGivePrize != null">
+        is_give_prize = #{isGivePrize,jdbcType=CHAR},
+      </if>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeGivePhone != null">
+        prize_give_phone = #{prizeGivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personImgUrlMax != null">
+        person_img_url_max = #{personImgUrlMax,jdbcType=VARCHAR},
+      </if>
+      <if test="personImgUrlMin != null">
+        person_img_url_min = #{personImgUrlMin,jdbcType=VARCHAR},
+      </if>
+      <if test="doudouCount != null">
+        doudou_count = #{doudouCount,jdbcType=INTEGER},
+      </if>
+      <if test="coniCount != null">
+        coni_count = #{coniCount,jdbcType=DOUBLE},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinOpenId != null">
+        weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinUniId != null">
+        weixin_uni_id = #{weixinUniId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNumber != null">
+        device_number = #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="qqOpenId != null">
+        qq_open_id = #{qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="isRobot != null">
+        is_robot = #{isRobot,jdbcType=CHAR},
+      </if>
+      <if test="robotOrderIp != null">
+        robot_order_ip = #{robotOrderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneName != null">
+        phone_name = #{phoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="isTaskPhone != null">
+        is_task_phone = #{isTaskPhone,jdbcType=CHAR},
+      </if>
+      <if test="isTaskAddress != null">
+        is_task_address = #{isTaskAddress,jdbcType=CHAR},
+      </if>
+      <if test="taskAllDoudou != null">
+        task_all_doudou = #{taskAllDoudou,jdbcType=INTEGER},
+      </if>
+      <if test="umengChannel != null">
+        umeng_channel = #{umengChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="smsSendCount != null">
+        sms_send_count = #{smsSendCount,jdbcType=INTEGER},
+      </if>
+      <if test="smsSendLastTime != null">
+        sms_send_last_time = #{smsSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contributionValue != null">
+        contribution_value = #{contributionValue,jdbcType=INTEGER},
+      </if>
+      <if test="contributionLevel != null">
+        contribution_level = #{contributionLevel,jdbcType=INTEGER},
+      </if>
+      <if test="lastUserId != null">
+        last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestCode != null">
+        request_code = #{requestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="showAddSendSmsEveryday != null">
+        show_add_send_sms_everyday = #{showAddSendSmsEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="showAddSendJpushEveryday != null">
+        show_add_send_jpush_everyday = #{showAddSendJpushEveryday,jdbcType=INTEGER},
+      </if>
+      <if test="showAddSendSmsDate != null">
+        show_add_send_sms_date = #{showAddSendSmsDate,jdbcType=DATE},
+      </if>
+      <if test="showAddSendJpushDate != null">
+        show_add_send_jpush_date = #{showAddSendJpushDate,jdbcType=DATE},
+      </if>
+      <if test="luckyCount != null">
+        lucky_count = #{luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumberActivity != null">
+        phone_number_activity = #{phoneNumberActivity,jdbcType=BIGINT},
+      </if>
+      <if test="luckyShopCount != null">
+        lucky_shop_count = #{luckyShopCount,jdbcType=INTEGER},
+      </if>
+      <if test="weiboOpenId != null">
+        weibo_open_id = #{weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgOne != null">
+        star_img_one = #{starImgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgTwo != null">
+        star_img_two = #{starImgTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starImgThree != null">
+        star_img_three = #{starImgThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starIdOne != null">
+        star_id_one = #{starIdOne,jdbcType=BIGINT},
+      </if>
+      <if test="starIdTwo != null">
+        star_id_two = #{starIdTwo,jdbcType=BIGINT},
+      </if>
+      <if test="starIdThree != null">
+        star_id_three = #{starIdThree,jdbcType=BIGINT},
+      </if>
+      <if test="voteCountOne != null">
+        vote_count_one = #{voteCountOne,jdbcType=INTEGER},
+      </if>
+      <if test="voteCountTwo != null">
+        vote_count_two = #{voteCountTwo,jdbcType=INTEGER},
+      </if>
+      <if test="voteCountThree != null">
+        vote_count_three = #{voteCountThree,jdbcType=INTEGER},
+      </if>
+      <if test="starDescOne != null">
+        star_desc_one = #{starDescOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starDescTwo != null">
+        star_desc_two = #{starDescTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starDescThree != null">
+        star_desc_three = #{starDescThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexOne != null">
+        star_sex_one = #{starSexOne,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexTwo != null">
+        star_sex_two = #{starSexTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="starSexThree != null">
+        star_sex_three = #{starSexThree,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevelOne != null">
+        star_level_one = #{starLevelOne,jdbcType=INTEGER},
+      </if>
+      <if test="personalHomepageImg != null">
+        personal_homepage_img = #{personalHomepageImg,jdbcType=VARCHAR},
+      </if>
+      <if test="personalAutograph != null">
+        personal_autograph = #{personalAutograph,jdbcType=VARCHAR},
+      </if>
+      <if test="heartCount != null">
+        heart_count = #{heartCount,jdbcType=BIGINT},
+      </if>
+      <if test="heartCountToday != null">
+        heart_count_today = #{heartCountToday,jdbcType=INTEGER},
+      </if>
+      <if test="heartDonateCount != null">
+        heart_donate_count = #{heartDonateCount,jdbcType=BIGINT},
+      </if>
+      <if test="moneyDonateCount != null">
+        money_donate_count = #{moneyDonateCount,jdbcType=DOUBLE},
+      </if>
+      <if test="xcxOpenId != null">
+        xcx_open_id = #{xcxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUniId != null">
+        sys_uni_id = #{sysUniId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.common.bean.CommonUserInfoDo">
+    update common_user_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      net_type = #{netType,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      phone_num_person = #{phoneNumPerson,jdbcType=BIGINT},
+      dynamic_password = #{dynamicPassword,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      confirm_number_login = #{confirmNumberLogin,jdbcType=VARCHAR},
+      confirm_number_forget = #{confirmNumberForget,jdbcType=VARCHAR},
+      is_vip = #{isVip,jdbcType=CHAR},
+      vip_type = #{vipType,jdbcType=VARCHAR},
+      vip_start_date = #{vipStartDate,jdbcType=DATE},
+      vip_end_date = #{vipEndDate,jdbcType=DATE},
+      is_first_game_win = #{isFirstGameWin,jdbcType=CHAR},
+      ims_sign_total_day = #{imsSignTotalDay,jdbcType=INTEGER},
+      ims_sign_continue_day = #{imsSignContinueDay,jdbcType=INTEGER},
+      is_give_prize = #{isGivePrize,jdbcType=CHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      prize_give_phone = #{prizeGivePhone,jdbcType=VARCHAR},
+      person_img_url_max = #{personImgUrlMax,jdbcType=VARCHAR},
+      person_img_url_min = #{personImgUrlMin,jdbcType=VARCHAR},
+      doudou_count = #{doudouCount,jdbcType=INTEGER},
+      coni_count = #{coniCount,jdbcType=DOUBLE},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+      weixin_uni_id = #{weixinUniId,jdbcType=VARCHAR},
+      device_number = #{deviceNumber,jdbcType=VARCHAR},
+      qq_open_id = #{qqOpenId,jdbcType=VARCHAR},
+      is_robot = #{isRobot,jdbcType=CHAR},
+      robot_order_ip = #{robotOrderIp,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      phone_name = #{phoneName,jdbcType=VARCHAR},
+      is_task_phone = #{isTaskPhone,jdbcType=CHAR},
+      is_task_address = #{isTaskAddress,jdbcType=CHAR},
+      task_all_doudou = #{taskAllDoudou,jdbcType=INTEGER},
+      umeng_channel = #{umengChannel,jdbcType=VARCHAR},
+      sms_send_count = #{smsSendCount,jdbcType=INTEGER},
+      sms_send_last_time = #{smsSendLastTime,jdbcType=TIMESTAMP},
+      contribution_value = #{contributionValue,jdbcType=INTEGER},
+      contribution_level = #{contributionLevel,jdbcType=INTEGER},
+      last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      request_code = #{requestCode,jdbcType=VARCHAR},
+      show_add_send_sms_everyday = #{showAddSendSmsEveryday,jdbcType=INTEGER},
+      show_add_send_jpush_everyday = #{showAddSendJpushEveryday,jdbcType=INTEGER},
+      show_add_send_sms_date = #{showAddSendSmsDate,jdbcType=DATE},
+      show_add_send_jpush_date = #{showAddSendJpushDate,jdbcType=DATE},
+      lucky_count = #{luckyCount,jdbcType=INTEGER},
+      phone_number_activity = #{phoneNumberActivity,jdbcType=BIGINT},
+      lucky_shop_count = #{luckyShopCount,jdbcType=INTEGER},
+      weibo_open_id = #{weiboOpenId,jdbcType=VARCHAR},
+      star_img_one = #{starImgOne,jdbcType=VARCHAR},
+      star_img_two = #{starImgTwo,jdbcType=VARCHAR},
+      star_img_three = #{starImgThree,jdbcType=VARCHAR},
+      star_id_one = #{starIdOne,jdbcType=BIGINT},
+      star_id_two = #{starIdTwo,jdbcType=BIGINT},
+      star_id_three = #{starIdThree,jdbcType=BIGINT},
+      vote_count_one = #{voteCountOne,jdbcType=INTEGER},
+      vote_count_two = #{voteCountTwo,jdbcType=INTEGER},
+      vote_count_three = #{voteCountThree,jdbcType=INTEGER},
+      star_desc_one = #{starDescOne,jdbcType=VARCHAR},
+      star_desc_two = #{starDescTwo,jdbcType=VARCHAR},
+      star_desc_three = #{starDescThree,jdbcType=VARCHAR},
+      star_sex_one = #{starSexOne,jdbcType=VARCHAR},
+      star_sex_two = #{starSexTwo,jdbcType=VARCHAR},
+      star_sex_three = #{starSexThree,jdbcType=VARCHAR},
+      star_level_one = #{starLevelOne,jdbcType=INTEGER},
+      personal_homepage_img = #{personalHomepageImg,jdbcType=VARCHAR},
+      personal_autograph = #{personalAutograph,jdbcType=VARCHAR},
+      heart_count = #{heartCount,jdbcType=BIGINT},
+      heart_count_today = #{heartCountToday,jdbcType=INTEGER},
+      heart_donate_count = #{heartDonateCount,jdbcType=BIGINT},
+      money_donate_count = #{moneyDonateCount,jdbcType=DOUBLE},
+      xcx_open_id = #{xcxOpenId,jdbcType=VARCHAR},
+      sys_uni_id = #{sysUniId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="increaseCoinByUserUinId" >
+    update common_user_info
+    set
+      last_Modify_Time = now(),
+      coni_count = coni_count + #{coin}
+    where sys_uni_id = #{userUinId}
+  </update>
+
+  <update id="minusCoinByUserUinId" >
+    update common_user_info
+    set
+      last_Modify_Time = now(),
+      coni_count = coni_count - #{coin}
+    where sys_uni_id = #{userUinId} and coni_count >= coni_count - #{coin}
+  </update>
+
+  <select id="selectUserMenuInfo" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from common_user_menu_info
+    where is_Deleted = 'n' order by order_number desc
+  </select>
+
+</mapper>

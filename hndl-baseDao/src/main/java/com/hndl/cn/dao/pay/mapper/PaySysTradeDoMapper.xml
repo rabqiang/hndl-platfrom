@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.pay.mapper.PaySysTradeDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.pay.bean.PaySysTradeDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pay_channel" jdbcType="INTEGER" property="payChannel" />
+    <result column="local_trade_no" jdbcType="BIGINT" property="localTradeNo" />
+    <result column="remote_trade_no" jdbcType="VARCHAR" property="remoteTradeNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="callback_time" jdbcType="TIMESTAMP" property="callbackTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="money_number" jdbcType="BIGINT" property="moneyNumber" />
+    <result column="pay_state" jdbcType="INTEGER" property="payState" />
+    <result column="expand1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand3" jdbcType="VARCHAR" property="expand3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, pay_channel, local_trade_no, remote_trade_no, create_time, callback_time, create_user_id, 
+    sign, money_number, pay_state, expand1, expand2, expand3
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pay_sys_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_sys_trade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pay_sys_trade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDoExample">
+    delete from pay_sys_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDo">
+    insert into pay_sys_trade (id, pay_channel, local_trade_no, 
+      remote_trade_no, create_time, callback_time, 
+      create_user_id, sign, money_number, 
+      pay_state, expand1, expand2, 
+      expand3)
+    values (#{id,jdbcType=INTEGER}, #{payChannel,jdbcType=INTEGER}, #{localTradeNo,jdbcType=BIGINT}, 
+      #{remoteTradeNo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{callbackTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=BIGINT}, #{sign,jdbcType=VARCHAR}, #{moneyNumber,jdbcType=BIGINT}, 
+      #{payState,jdbcType=INTEGER}, #{expand1,jdbcType=VARCHAR}, #{expand2,jdbcType=VARCHAR}, 
+      #{expand3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDo">
+    insert into pay_sys_trade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="localTradeNo != null">
+        local_trade_no,
+      </if>
+      <if test="remoteTradeNo != null">
+        remote_trade_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="callbackTime != null">
+        callback_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="moneyNumber != null">
+        money_number,
+      </if>
+      <if test="payState != null">
+        pay_state,
+      </if>
+      <if test="expand1 != null">
+        expand1,
+      </if>
+      <if test="expand2 != null">
+        expand2,
+      </if>
+      <if test="expand3 != null">
+        expand3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="localTradeNo != null">
+        #{localTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="remoteTradeNo != null">
+        #{remoteTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callbackTime != null">
+        #{callbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyNumber != null">
+        #{moneyNumber,jdbcType=BIGINT},
+      </if>
+      <if test="payState != null">
+        #{payState,jdbcType=INTEGER},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDoExample" resultType="java.lang.Long">
+    select count(*) from pay_sys_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <!--sql手写部分；查询金额统计数据-->
+  <select id="countmoneyNumber" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDoExample" resultType="java.lang.Long">
+    <!--处理null值为0,exp:select ifnull(expr1,expr2)-->
+    select ifnull(( select sum(money_number) from pay_sys_trade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>),0)
+
+  </select>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update pay_sys_trade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.payChannel != null">
+        pay_channel = #{record.payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="record.localTradeNo != null">
+        local_trade_no = #{record.localTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.remoteTradeNo != null">
+        remote_trade_no = #{record.remoteTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callbackTime != null">
+        callback_time = #{record.callbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sign != null">
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moneyNumber != null">
+        money_number = #{record.moneyNumber,jdbcType=BIGINT},
+      </if>
+      <if test="record.payState != null">
+        pay_state = #{record.payState,jdbcType=INTEGER},
+      </if>
+      <if test="record.expand1 != null">
+        expand1 = #{record.expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expand2 != null">
+        expand2 = #{record.expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expand3 != null">
+        expand3 = #{record.expand3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pay_sys_trade
+    set id = #{record.id,jdbcType=INTEGER},
+      pay_channel = #{record.payChannel,jdbcType=INTEGER},
+      local_trade_no = #{record.localTradeNo,jdbcType=BIGINT},
+      remote_trade_no = #{record.remoteTradeNo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      callback_time = #{record.callbackTime,jdbcType=TIMESTAMP},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      money_number = #{record.moneyNumber,jdbcType=BIGINT},
+      pay_state = #{record.payState,jdbcType=INTEGER},
+      expand1 = #{record.expand1,jdbcType=VARCHAR},
+      expand2 = #{record.expand2,jdbcType=VARCHAR},
+      expand3 = #{record.expand3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDo">
+    update pay_sys_trade
+    <set>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="localTradeNo != null">
+        local_trade_no = #{localTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="remoteTradeNo != null">
+        remote_trade_no = #{remoteTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callbackTime != null">
+        callback_time = #{callbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyNumber != null">
+        money_number = #{moneyNumber,jdbcType=BIGINT},
+      </if>
+      <if test="payState != null">
+        pay_state = #{payState,jdbcType=INTEGER},
+      </if>
+      <if test="expand1 != null">
+        expand1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.pay.bean.PaySysTradeDo">
+    update pay_sys_trade
+    set pay_channel = #{payChannel,jdbcType=INTEGER},
+      local_trade_no = #{localTradeNo,jdbcType=BIGINT},
+      remote_trade_no = #{remoteTradeNo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      callback_time = #{callbackTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      sign = #{sign,jdbcType=VARCHAR},
+      money_number = #{moneyNumber,jdbcType=BIGINT},
+      pay_state = #{payState,jdbcType=INTEGER},
+      expand1 = #{expand1,jdbcType=VARCHAR},
+      expand2 = #{expand2,jdbcType=VARCHAR},
+      expand3 = #{expand3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TBaseConfigDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TBaseConfigDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="configname" jdbcType="VARCHAR" property="configname" />
+    <result column="configvalue" jdbcType="VARCHAR" property="configvalue" />
+    <result column="allowmodify" jdbcType="CHAR" property="allowmodify" />
+    <result column="configtype" jdbcType="CHAR" property="configtype" />
+    <result column="validaterule" jdbcType="VARCHAR" property="validaterule" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, configname, configvalue, allowmodify, configtype, validaterule, description
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_base_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDoExample">
+    delete from t_base_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDo">
+    insert into t_base_config (id, configname, configvalue, 
+      allowmodify, configtype, validaterule, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{configname,jdbcType=VARCHAR}, #{configvalue,jdbcType=VARCHAR}, 
+      #{allowmodify,jdbcType=CHAR}, #{configtype,jdbcType=CHAR}, #{validaterule,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDo">
+    insert into t_base_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="configname != null">
+        configname,
+      </if>
+      <if test="configvalue != null">
+        configvalue,
+      </if>
+      <if test="allowmodify != null">
+        allowmodify,
+      </if>
+      <if test="configtype != null">
+        configtype,
+      </if>
+      <if test="validaterule != null">
+        validaterule,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configname != null">
+        #{configname,jdbcType=VARCHAR},
+      </if>
+      <if test="configvalue != null">
+        #{configvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="allowmodify != null">
+        #{allowmodify,jdbcType=CHAR},
+      </if>
+      <if test="configtype != null">
+        #{configtype,jdbcType=CHAR},
+      </if>
+      <if test="validaterule != null">
+        #{validaterule,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDoExample" resultType="java.lang.Long">
+    select count(*) from t_base_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_base_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.configname != null">
+        configname = #{record.configname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configvalue != null">
+        configvalue = #{record.configvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowmodify != null">
+        allowmodify = #{record.allowmodify,jdbcType=CHAR},
+      </if>
+      <if test="record.configtype != null">
+        configtype = #{record.configtype,jdbcType=CHAR},
+      </if>
+      <if test="record.validaterule != null">
+        validaterule = #{record.validaterule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_base_config
+    set id = #{record.id,jdbcType=INTEGER},
+      configname = #{record.configname,jdbcType=VARCHAR},
+      configvalue = #{record.configvalue,jdbcType=VARCHAR},
+      allowmodify = #{record.allowmodify,jdbcType=CHAR},
+      configtype = #{record.configtype,jdbcType=CHAR},
+      validaterule = #{record.validaterule,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDo">
+    update t_base_config
+    <set>
+      <if test="configname != null">
+        configname = #{configname,jdbcType=VARCHAR},
+      </if>
+      <if test="configvalue != null">
+        configvalue = #{configvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="allowmodify != null">
+        allowmodify = #{allowmodify,jdbcType=CHAR},
+      </if>
+      <if test="configtype != null">
+        configtype = #{configtype,jdbcType=CHAR},
+      </if>
+      <if test="validaterule != null">
+        validaterule = #{validaterule,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TBaseConfigDo">
+    update t_base_config
+    set configname = #{configname,jdbcType=VARCHAR},
+      configvalue = #{configvalue,jdbcType=VARCHAR},
+      allowmodify = #{allowmodify,jdbcType=CHAR},
+      configtype = #{configtype,jdbcType=CHAR},
+      validaterule = #{validaterule,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

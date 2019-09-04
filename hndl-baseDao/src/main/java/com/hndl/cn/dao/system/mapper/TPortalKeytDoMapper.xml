@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.system.mapper.TPortalKeytDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.system.bean.TPortalKeytDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="appId" jdbcType="VARCHAR" property="appid" />
+    <result column="channelId" jdbcType="VARCHAR" property="channelid" />
+    <result column="nodeType" jdbcType="VARCHAR" property="nodetype" />
+    <result column="sysDate" jdbcType="VARCHAR" property="sysdate" />
+    <result column="retKey" jdbcType="VARCHAR" property="retkey" />
+    <result column="retMsg" jdbcType="VARCHAR" property="retmsg" />
+    <result column="retCode" jdbcType="VARCHAR" property="retcode" />
+    <result column="sys" jdbcType="VARCHAR" property="sys" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="htmlKey" jdbcType="VARCHAR" property="htmlkey" />
+    <result column="sysVersion" jdbcType="VARCHAR" property="sysversion" />
+    <result column="imei" jdbcType="VARCHAR" property="imei" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ip, appId, channelId, nodeType, `sysDate`, retKey, retMsg, retCode, sys, version, 
+    `status`, htmlKey, sysVersion, imei
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_portal_keyt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_portal_keyt
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_portal_keyt
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDoExample">
+    delete from t_portal_keyt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDo">
+    insert into t_portal_keyt (id, ip, appId, 
+      channelId, nodeType, `sysDate`, 
+      retKey, retMsg, retCode, 
+      sys, version, `status`, 
+      htmlKey, sysVersion, imei
+      )
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{channelid,jdbcType=VARCHAR}, #{nodetype,jdbcType=VARCHAR}, #{sysdate,jdbcType=VARCHAR}, 
+      #{retkey,jdbcType=VARCHAR}, #{retmsg,jdbcType=VARCHAR}, #{retcode,jdbcType=VARCHAR}, 
+      #{sys,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{htmlkey,jdbcType=VARCHAR}, #{sysversion,jdbcType=VARCHAR}, #{imei,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDo">
+    insert into t_portal_keyt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="appid != null">
+        appId,
+      </if>
+      <if test="channelid != null">
+        channelId,
+      </if>
+      <if test="nodetype != null">
+        nodeType,
+      </if>
+      <if test="sysdate != null">
+        `sysDate`,
+      </if>
+      <if test="retkey != null">
+        retKey,
+      </if>
+      <if test="retmsg != null">
+        retMsg,
+      </if>
+      <if test="retcode != null">
+        retCode,
+      </if>
+      <if test="sys != null">
+        sys,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="htmlkey != null">
+        htmlKey,
+      </if>
+      <if test="sysversion != null">
+        sysVersion,
+      </if>
+      <if test="imei != null">
+        imei,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null">
+        #{channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="nodetype != null">
+        #{nodetype,jdbcType=VARCHAR},
+      </if>
+      <if test="sysdate != null">
+        #{sysdate,jdbcType=VARCHAR},
+      </if>
+      <if test="retkey != null">
+        #{retkey,jdbcType=VARCHAR},
+      </if>
+      <if test="retmsg != null">
+        #{retmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="retcode != null">
+        #{retcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        #{sys,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlkey != null">
+        #{htmlkey,jdbcType=VARCHAR},
+      </if>
+      <if test="sysversion != null">
+        #{sysversion,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDoExample" resultType="java.lang.Long">
+    select count(*) from t_portal_keyt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_portal_keyt
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        appId = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelid != null">
+        channelId = #{record.channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodetype != null">
+        nodeType = #{record.nodetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysdate != null">
+        `sysDate` = #{record.sysdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retkey != null">
+        retKey = #{record.retkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retmsg != null">
+        retMsg = #{record.retmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retcode != null">
+        retCode = #{record.retcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sys != null">
+        sys = #{record.sys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.htmlkey != null">
+        htmlKey = #{record.htmlkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysversion != null">
+        sysVersion = #{record.sysversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imei != null">
+        imei = #{record.imei,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_portal_keyt
+    set id = #{record.id,jdbcType=INTEGER},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      appId = #{record.appid,jdbcType=VARCHAR},
+      channelId = #{record.channelid,jdbcType=VARCHAR},
+      nodeType = #{record.nodetype,jdbcType=VARCHAR},
+      `sysDate` = #{record.sysdate,jdbcType=VARCHAR},
+      retKey = #{record.retkey,jdbcType=VARCHAR},
+      retMsg = #{record.retmsg,jdbcType=VARCHAR},
+      retCode = #{record.retcode,jdbcType=VARCHAR},
+      sys = #{record.sys,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=VARCHAR},
+      htmlKey = #{record.htmlkey,jdbcType=VARCHAR},
+      sysVersion = #{record.sysversion,jdbcType=VARCHAR},
+      imei = #{record.imei,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDo">
+    update t_portal_keyt
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        appId = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="channelid != null">
+        channelId = #{channelid,jdbcType=VARCHAR},
+      </if>
+      <if test="nodetype != null">
+        nodeType = #{nodetype,jdbcType=VARCHAR},
+      </if>
+      <if test="sysdate != null">
+        `sysDate` = #{sysdate,jdbcType=VARCHAR},
+      </if>
+      <if test="retkey != null">
+        retKey = #{retkey,jdbcType=VARCHAR},
+      </if>
+      <if test="retmsg != null">
+        retMsg = #{retmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="retcode != null">
+        retCode = #{retcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        sys = #{sys,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlkey != null">
+        htmlKey = #{htmlkey,jdbcType=VARCHAR},
+      </if>
+      <if test="sysversion != null">
+        sysVersion = #{sysversion,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null">
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.system.bean.TPortalKeytDo">
+    update t_portal_keyt
+    set ip = #{ip,jdbcType=VARCHAR},
+      appId = #{appid,jdbcType=VARCHAR},
+      channelId = #{channelid,jdbcType=VARCHAR},
+      nodeType = #{nodetype,jdbcType=VARCHAR},
+      `sysDate` = #{sysdate,jdbcType=VARCHAR},
+      retKey = #{retkey,jdbcType=VARCHAR},
+      retMsg = #{retmsg,jdbcType=VARCHAR},
+      retCode = #{retcode,jdbcType=VARCHAR},
+      sys = #{sys,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      htmlKey = #{htmlkey,jdbcType=VARCHAR},
+      sysVersion = #{sysversion,jdbcType=VARCHAR},
+      imei = #{imei,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

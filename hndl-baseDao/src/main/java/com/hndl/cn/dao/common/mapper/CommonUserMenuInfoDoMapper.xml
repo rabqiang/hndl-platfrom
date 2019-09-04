@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.common.mapper.CommonUserMenuInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="to_type" jdbcType="VARCHAR" property="toType" />
+    <result column="to_url" jdbcType="VARCHAR" property="toUrl" />
+    <result column="is_ios_hide" jdbcType="CHAR" property="isIosHide" />
+    <result column="is_android_hide" jdbcType="CHAR" property="isAndroidHide" />
+    <result column="order_number" jdbcType="INTEGER" property="orderNumber" />
+    <result column="is_ios_version_hide" jdbcType="VARCHAR" property="isIosVersionHide" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, title, 
+    img_url, to_type, to_url, is_ios_hide, is_android_hide, order_number, is_ios_version_hide
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_user_menu_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_user_menu_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_user_menu_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDoExample">
+    delete from common_user_menu_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDo">
+    insert into common_user_menu_info (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      title, img_url, to_type, 
+      to_url, is_ios_hide, is_android_hide, 
+      order_number, is_ios_version_hide)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{toType,jdbcType=VARCHAR}, 
+      #{toUrl,jdbcType=VARCHAR}, #{isIosHide,jdbcType=CHAR}, #{isAndroidHide,jdbcType=CHAR}, 
+      #{orderNumber,jdbcType=INTEGER}, #{isIosVersionHide,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDo">
+    insert into common_user_menu_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="toType != null">
+        to_type,
+      </if>
+      <if test="toUrl != null">
+        to_url,
+      </if>
+      <if test="isIosHide != null">
+        is_ios_hide,
+      </if>
+      <if test="isAndroidHide != null">
+        is_android_hide,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="isIosVersionHide != null">
+        is_ios_version_hide,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toType != null">
+        #{toType,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null">
+        #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isIosHide != null">
+        #{isIosHide,jdbcType=CHAR},
+      </if>
+      <if test="isAndroidHide != null">
+        #{isAndroidHide,jdbcType=CHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isIosVersionHide != null">
+        #{isIosVersionHide,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDoExample" resultType="java.lang.Long">
+    select count(*) from common_user_menu_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update common_user_menu_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toType != null">
+        to_type = #{record.toType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toUrl != null">
+        to_url = #{record.toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isIosHide != null">
+        is_ios_hide = #{record.isIosHide,jdbcType=CHAR},
+      </if>
+      <if test="record.isAndroidHide != null">
+        is_android_hide = #{record.isAndroidHide,jdbcType=CHAR},
+      </if>
+      <if test="record.orderNumber != null">
+        order_number = #{record.orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.isIosVersionHide != null">
+        is_ios_version_hide = #{record.isIosVersionHide,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update common_user_menu_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      to_type = #{record.toType,jdbcType=VARCHAR},
+      to_url = #{record.toUrl,jdbcType=VARCHAR},
+      is_ios_hide = #{record.isIosHide,jdbcType=CHAR},
+      is_android_hide = #{record.isAndroidHide,jdbcType=CHAR},
+      order_number = #{record.orderNumber,jdbcType=INTEGER},
+      is_ios_version_hide = #{record.isIosVersionHide,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDo">
+    update common_user_menu_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toType != null">
+        to_type = #{toType,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null">
+        to_url = #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isIosHide != null">
+        is_ios_hide = #{isIosHide,jdbcType=CHAR},
+      </if>
+      <if test="isAndroidHide != null">
+        is_android_hide = #{isAndroidHide,jdbcType=CHAR},
+      </if>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isIosVersionHide != null">
+        is_ios_version_hide = #{isIosVersionHide,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.common.bean.CommonUserMenuInfoDo">
+    update common_user_menu_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      to_type = #{toType,jdbcType=VARCHAR},
+      to_url = #{toUrl,jdbcType=VARCHAR},
+      is_ios_hide = #{isIosHide,jdbcType=CHAR},
+      is_android_hide = #{isAndroidHide,jdbcType=CHAR},
+      order_number = #{orderNumber,jdbcType=INTEGER},
+      is_ios_version_hide = #{isIosVersionHide,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+ <select id="selectUserMenuInfo" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from common_user_menu_info
+    where is_Deleted = 'n' order by order_number desc
+  </select>
+</mapper>

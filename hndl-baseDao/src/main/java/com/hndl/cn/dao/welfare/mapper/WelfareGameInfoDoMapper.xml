@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hndl.cn.dao.welfare.mapper.WelfareGameInfoDoMapper">
+  <resultMap id="BaseResultMap" type="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_Deleted" jdbcType="CHAR" property="isDeleted" />
+    <result column="create_Operator" jdbcType="VARCHAR" property="createOperator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_Operator" jdbcType="VARCHAR" property="lastOperator" />
+    <result column="last_Modify_Time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="play_count" jdbcType="BIGINT" property="playCount" />
+    <result column="reward_to_url" jdbcType="VARCHAR" property="rewardToUrl" />
+    <result column="desc_to_url" jdbcType="VARCHAR" property="descToUrl" />
+    <result column="to_url" jdbcType="VARCHAR" property="toUrl" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="revive_doudou_count" jdbcType="BIGINT" property="reviveDoudouCount" />
+    <result column="reward_heart" jdbcType="BIGINT" property="rewardHeart" />
+    <result column="restrict_score" jdbcType="BIGINT" property="restrictScore" />
+    <result column="other1" jdbcType="VARCHAR" property="other1" />
+    <result column="other2" jdbcType="VARCHAR" property="other2" />
+    <result column="other3" jdbcType="INTEGER" property="other3" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="thriy_game_url" jdbcType="VARCHAR" property="thriyGameUrl" />
+    <result column="channel_ext" jdbcType="VARCHAR" property="channelExt" />
+    <result column="pay_callback_url" jdbcType="VARCHAR" property="payCallbackUrl" />
+    <result column="game_key" jdbcType="VARCHAR" property="gameKey" />
+    <result column="is_show_challenge" jdbcType="VARCHAR" property="isShowChallenge" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_Deleted, create_Operator, create_time, last_Operator, last_Modify_Time, title, 
+    img_url, play_count, reward_to_url, desc_to_url, to_url, `state`, revive_doudou_count, 
+    reward_heart, restrict_score, other1, other2, other3, `type`, email, thriy_game_url, 
+    channel_ext, pay_callback_url, game_key, is_show_challenge
+  </sql>
+  <select id="selectByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from welfare_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from welfare_game_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from welfare_game_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDoExample">
+    delete from welfare_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDo">
+    insert into welfare_game_info (id, is_Deleted, create_Operator, 
+      create_time, last_Operator, last_Modify_Time, 
+      title, img_url, play_count, 
+      reward_to_url, desc_to_url, to_url, 
+      `state`, revive_doudou_count, reward_heart, 
+      restrict_score, other1, other2, 
+      other3, `type`, email, 
+      thriy_game_url, channel_ext, pay_callback_url, 
+      game_key, is_show_challenge)
+    values (#{id,jdbcType=BIGINT}, #{isDeleted,jdbcType=CHAR}, #{createOperator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastOperator,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{playCount,jdbcType=BIGINT}, 
+      #{rewardToUrl,jdbcType=VARCHAR}, #{descToUrl,jdbcType=VARCHAR}, #{toUrl,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{reviveDoudouCount,jdbcType=BIGINT}, #{rewardHeart,jdbcType=BIGINT}, 
+      #{restrictScore,jdbcType=BIGINT}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}, 
+      #{other3,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{thriyGameUrl,jdbcType=VARCHAR}, #{channelExt,jdbcType=VARCHAR}, #{payCallbackUrl,jdbcType=VARCHAR}, 
+      #{gameKey,jdbcType=VARCHAR}, #{isShowChallenge,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDo">
+    insert into welfare_game_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isDeleted != null">
+        is_Deleted,
+      </if>
+      <if test="createOperator != null">
+        create_Operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastOperator != null">
+        last_Operator,
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="playCount != null">
+        play_count,
+      </if>
+      <if test="rewardToUrl != null">
+        reward_to_url,
+      </if>
+      <if test="descToUrl != null">
+        desc_to_url,
+      </if>
+      <if test="toUrl != null">
+        to_url,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="reviveDoudouCount != null">
+        revive_doudou_count,
+      </if>
+      <if test="rewardHeart != null">
+        reward_heart,
+      </if>
+      <if test="restrictScore != null">
+        restrict_score,
+      </if>
+      <if test="other1 != null">
+        other1,
+      </if>
+      <if test="other2 != null">
+        other2,
+      </if>
+      <if test="other3 != null">
+        other3,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="thriyGameUrl != null">
+        thriy_game_url,
+      </if>
+      <if test="channelExt != null">
+        channel_ext,
+      </if>
+      <if test="payCallbackUrl != null">
+        pay_callback_url,
+      </if>
+      <if test="gameKey != null">
+        game_key,
+      </if>
+      <if test="isShowChallenge != null">
+        is_show_challenge,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="playCount != null">
+        #{playCount,jdbcType=BIGINT},
+      </if>
+      <if test="rewardToUrl != null">
+        #{rewardToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="descToUrl != null">
+        #{descToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null">
+        #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reviveDoudouCount != null">
+        #{reviveDoudouCount,jdbcType=BIGINT},
+      </if>
+      <if test="rewardHeart != null">
+        #{rewardHeart,jdbcType=BIGINT},
+      </if>
+      <if test="restrictScore != null">
+        #{restrictScore,jdbcType=BIGINT},
+      </if>
+      <if test="other1 != null">
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        #{other3,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="thriyGameUrl != null">
+        #{thriyGameUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelExt != null">
+        #{channelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="payCallbackUrl != null">
+        #{payCallbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gameKey != null">
+        #{gameKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowChallenge != null">
+        #{isShowChallenge,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDoExample" resultType="java.lang.Long">
+    select count(*) from welfare_game_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update welfare_game_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDeleted != null">
+        is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.createOperator != null">
+        create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastOperator != null">
+        last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifyTime != null">
+        last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playCount != null">
+        play_count = #{record.playCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.rewardToUrl != null">
+        reward_to_url = #{record.rewardToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descToUrl != null">
+        desc_to_url = #{record.descToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toUrl != null">
+        to_url = #{record.toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        `state` = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviveDoudouCount != null">
+        revive_doudou_count = #{record.reviveDoudouCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.rewardHeart != null">
+        reward_heart = #{record.rewardHeart,jdbcType=BIGINT},
+      </if>
+      <if test="record.restrictScore != null">
+        restrict_score = #{record.restrictScore,jdbcType=BIGINT},
+      </if>
+      <if test="record.other1 != null">
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null">
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other3 != null">
+        other3 = #{record.other3,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thriyGameUrl != null">
+        thriy_game_url = #{record.thriyGameUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelExt != null">
+        channel_ext = #{record.channelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCallbackUrl != null">
+        pay_callback_url = #{record.payCallbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameKey != null">
+        game_key = #{record.gameKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShowChallenge != null">
+        is_show_challenge = #{record.isShowChallenge,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update welfare_game_info
+    set id = #{record.id,jdbcType=BIGINT},
+      is_Deleted = #{record.isDeleted,jdbcType=CHAR},
+      create_Operator = #{record.createOperator,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{record.lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      play_count = #{record.playCount,jdbcType=BIGINT},
+      reward_to_url = #{record.rewardToUrl,jdbcType=VARCHAR},
+      desc_to_url = #{record.descToUrl,jdbcType=VARCHAR},
+      to_url = #{record.toUrl,jdbcType=VARCHAR},
+      `state` = #{record.state,jdbcType=VARCHAR},
+      revive_doudou_count = #{record.reviveDoudouCount,jdbcType=BIGINT},
+      reward_heart = #{record.rewardHeart,jdbcType=BIGINT},
+      restrict_score = #{record.restrictScore,jdbcType=BIGINT},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR},
+      other3 = #{record.other3,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      thriy_game_url = #{record.thriyGameUrl,jdbcType=VARCHAR},
+      channel_ext = #{record.channelExt,jdbcType=VARCHAR},
+      pay_callback_url = #{record.payCallbackUrl,jdbcType=VARCHAR},
+      game_key = #{record.gameKey,jdbcType=VARCHAR},
+      is_show_challenge = #{record.isShowChallenge,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDo">
+    update welfare_game_info
+    <set>
+      <if test="isDeleted != null">
+        is_Deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="createOperator != null">
+        create_Operator = #{createOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null">
+        last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null">
+        last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="playCount != null">
+        play_count = #{playCount,jdbcType=BIGINT},
+      </if>
+      <if test="rewardToUrl != null">
+        reward_to_url = #{rewardToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="descToUrl != null">
+        desc_to_url = #{descToUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null">
+        to_url = #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reviveDoudouCount != null">
+        revive_doudou_count = #{reviveDoudouCount,jdbcType=BIGINT},
+      </if>
+      <if test="rewardHeart != null">
+        reward_heart = #{rewardHeart,jdbcType=BIGINT},
+      </if>
+      <if test="restrictScore != null">
+        restrict_score = #{restrictScore,jdbcType=BIGINT},
+      </if>
+      <if test="other1 != null">
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null">
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+      <if test="other3 != null">
+        other3 = #{other3,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="thriyGameUrl != null">
+        thriy_game_url = #{thriyGameUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelExt != null">
+        channel_ext = #{channelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="payCallbackUrl != null">
+        pay_callback_url = #{payCallbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gameKey != null">
+        game_key = #{gameKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowChallenge != null">
+        is_show_challenge = #{isShowChallenge,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hndl.cn.dao.welfare.bean.WelfareGameInfoDo">
+    update welfare_game_info
+    set is_Deleted = #{isDeleted,jdbcType=CHAR},
+      create_Operator = #{createOperator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_Operator = #{lastOperator,jdbcType=VARCHAR},
+      last_Modify_Time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      play_count = #{playCount,jdbcType=BIGINT},
+      reward_to_url = #{rewardToUrl,jdbcType=VARCHAR},
+      desc_to_url = #{descToUrl,jdbcType=VARCHAR},
+      to_url = #{toUrl,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=VARCHAR},
+      revive_doudou_count = #{reviveDoudouCount,jdbcType=BIGINT},
+      reward_heart = #{rewardHeart,jdbcType=BIGINT},
+      restrict_score = #{restrictScore,jdbcType=BIGINT},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR},
+      other3 = #{other3,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      thriy_game_url = #{thriyGameUrl,jdbcType=VARCHAR},
+      channel_ext = #{channelExt,jdbcType=VARCHAR},
+      pay_callback_url = #{payCallbackUrl,jdbcType=VARCHAR},
+      game_key = #{gameKey,jdbcType=VARCHAR},
+      is_show_challenge = #{isShowChallenge,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
